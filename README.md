@@ -4,6 +4,8 @@
 
 Rawr 2.3.23 for Whitemane Rebuffed (WoW 3.3.5a): Whitemane items, Enhancement mechanics measured on Whitemane, characters from CharacterProfiler.
 
+The bag button right of Export lists only the items a character owns: equipped, bags and bank of the last CharacterProfiler save.
+
 ## Changes
 
 - 0.3.21: 12 330 Whitemane items, state 2026-10-25.

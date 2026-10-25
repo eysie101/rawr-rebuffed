@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Rawr.Retribution</AssemblyName>
+    <RootNamespace>Rawr.Retribution</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>$(NoWarn);CS0618;CS0612;CS1591;CS0162;CS0168;CS0219;CS0414;CS0649;CS0169;CS0108;CS0105;SYSLIB0014</NoWarn>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <Deterministic>true</Deterministic>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PathMap>$(MSBuildProjectDirectory)=/src/Rawr.Retribution</PathMap>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CalculationOptionsRetribution.cs" />
+    <Compile Include="GraphForm.cs" />
+    <Compile Include="GraphForm.designer.cs" />
+    <Compile Include="Rotation.cs" />
+    <Compile Include="Rotation.ECD Table\EffectiveCooldown.cs" />
+    <Compile Include="Rotation.FCFS Simulator\Simulator.cs" />
+    <Compile Include="Rotation.FCFS Simulator\SimulatorAbility.cs" />
+    <Compile Include="Rotation.FCFS Simulator\SimulatorEngine.cs" />
+    <Compile Include="Rotation.FCFS Simulator\SimulatorParameters.cs" />
+    <Compile Include="RotationSolution.cs" />
+    <Compile Include="Skill.cs" />
+    <Compile Include="CombatStats.cs" />
+    <Compile Include="Enum.cs" />
+    <Compile Include="CalculationOptionsPanelRetribution.cs" />
+    <Compile Include="CalculationOptionsPanelRetribution.Designer.cs" />
+    <Compile Include="CalculationsRetribution.cs" />
+    <Compile Include="CharacterCalculationsRetribution.cs" />
+    <Compile Include="ComparisonCalculationRetribution.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CalculationOptionsPanelRetribution.resx">
+      <DependentUpon>CalculationOptionsPanelRetribution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraphForm.resx">
+      <DependentUpon>GraphForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="ProcModel.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rawr.Base\Rawr.Base.csproj" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+    <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+  </ItemGroup>
+</Project>

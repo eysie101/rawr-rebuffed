@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Rawr.Enhance</AssemblyName>
+    <RootNamespace>Rawr.Enhance</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>$(NoWarn);CS0618;CS0612;CS1591;CS0162;CS0168;CS0219;CS0414;CS0649;CS0169;CS0108;CS0105;SYSLIB0014</NoWarn>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <Deterministic>true</Deterministic>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PathMap>$(MSBuildProjectDirectory)=/src/Rawr.Enhance</PathMap>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Ability.cs" />
+    <Compile Include="CalculationOptionsEnhance.cs" />
+    <Compile Include="CalculationOptionsPanelEnhance.cs" />
+    <Compile Include="CalculationOptionsPanelEnhance.Designer.cs" />
+    <Compile Include="CalculationsEnhance.cs" />
+    <Compile Include="CharacterCalculationsEnhance.cs" />
+    <Compile Include="FireElemental.cs" />
+    <Compile Include="Priority.cs" />
+    <Compile Include="CombatStats.cs" />
+    <Compile Include="ComparisonCalculationsEnhance.cs" />
+    <Compile Include="EnhSim.cs" />
+    <Compile Include="Gemming.cs" />
+    <Compile Include="OldCode.cs" />
+    <Compile Include="PriorityQueue.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="OldPriorities.cs" />
+    <Compile Include="StatsSpecialEffects.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CalculationOptionsPanelEnhance.resx">
+      <DependentUpon>CalculationOptionsPanelEnhance.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rawr.Base\Rawr.Base.csproj" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+    <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+  </ItemGroup>
+</Project>

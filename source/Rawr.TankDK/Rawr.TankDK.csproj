@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Rawr.TankDK</AssemblyName>
+    <RootNamespace>Rawr.TankDK</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>$(NoWarn);CS0618;CS0612;CS1591;CS0162;CS0168;CS0219;CS0414;CS0649;CS0169;CS0108;CS0105;SYSLIB0014</NoWarn>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <Deterministic>true</Deterministic>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PathMap>$(MSBuildProjectDirectory)=/src/Rawr.TankDK</PathMap>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DKAbilities\AbilityDK.Base.cs" />
+    <Compile Include="DKAbilities\AbilityDK.BloodBoil.cs" />
+    <Compile Include="DKAbilities\AbilityDK.BloodPlague.cs" />
+    <Compile Include="DKAbilities\AbilityDK.BloodStrike.cs" />
+    <Compile Include="DKAbilities\AbilityDK.DeathNDecay.cs" />
+    <Compile Include="DKAbilities\AbilityDK.FrostFever.cs" />
+    <Compile Include="DKAbilities\AbilityDK.FrostStrike.cs" />
+    <Compile Include="DKAbilities\AbilityDK.IcyTouch.cs" />
+    <Compile Include="DKAbilities\AbilityDK.Pestilence.cs" />
+    <Compile Include="DKAbilities\AbilityDK.PlagueStrike.cs" />
+    <Compile Include="CalculationOptionsPanelTankDK.cs" />
+    <Compile Include="CalculationOptionsPanelTankDK.Designer.cs" />
+    <Compile Include="CalculationOptionsTankDK.cs" />
+    <Compile Include="CalculationsTankDK.cs" />
+    <Compile Include="CharacterCalculationsTankDK.cs" />
+    <Compile Include="CombatTable.cs" />
+    <Compile Include="ComparisonCalculationTankDK.cs" />
+    <Compile Include="DKAbilities\AbilityDK.DeathStrike.cs" />
+    <Compile Include="DKAbilities\AbilityDK.HowlingBlast.cs" />
+    <Compile Include="DKAbilities\AbilityDK.HeartStrike.cs" />
+    <Compile Include="DKAbilities\AbilityDK.DeathCoil.cs" />
+    <Compile Include="DKAbilities\AbilityDK.CorpseExplosion.cs" />
+    <Compile Include="DKAbilities\AbilityDK.RuneStrike.cs" />
+    <Compile Include="DKAbilities\AbilityDK.ScourgeStrike.cs" />
+    <Compile Include="DKAbilities\AbilityDK.Obliterate.cs" />
+    <Compile Include="DKAbilities\CombatState.cs" />
+    <Compile Include="DKAbilities\CombatTable2.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RotationViewer.cs" />
+    <Compile Include="RotationViewer.designer.cs" />
+    <Compile Include="ShotRotation.cs" />
+    <Compile Include="StatsSpecialEffects.cs" />
+    <Compile Include="Weapon.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CalculationOptionsPanelTankDK.resx">
+      <DependentUpon>CalculationOptionsPanelTankDK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RotationViewer.resx">
+      <DependentUpon>RotationViewer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Readme.TankDK.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rawr.Base\Rawr.Base.csproj" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+    <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+  </ItemGroup>
+</Project>

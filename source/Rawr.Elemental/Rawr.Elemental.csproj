@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Rawr.Elemental</AssemblyName>
+    <RootNamespace>Rawr.Elemental</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>$(NoWarn);CS0618;CS0612;CS1591;CS0162;CS0168;CS0219;CS0414;CS0649;CS0169;CS0108;CS0105;SYSLIB0014</NoWarn>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <Deterministic>true</Deterministic>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PathMap>$(MSBuildProjectDirectory)=/src/Rawr.Elemental</PathMap>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CalculationOptionsElemental.cs" />
+    <Compile Include="CombatFactors.cs" />
+    <Compile Include="Estimation.cs" />
+    <Compile Include="CalculationOptionsPanelElemental.cs" />
+    <Compile Include="CalculationOptionsPanelElemental.Designer.cs" />
+    <Compile Include="CalculationsElemental.cs" />
+    <Compile Include="IRotationOptions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rotation.cs" />
+    <Compile Include="RotationOptions.cs" />
+    <Compile Include="Spells\ChainLightning.cs" />
+    <Compile Include="Spells\EarthShock.cs" />
+    <Compile Include="Spells\ElementalMastery.cs" />
+    <Compile Include="Spells\FireElemental.cs" />
+    <Compile Include="Spells\FireNova.cs" />
+    <Compile Include="Spells\FlameShock.cs" />
+    <Compile Include="Spells\FrostShock.cs" />
+    <Compile Include="Spells\ILightningOverload.cs" />
+    <Compile Include="Spells\Totem.cs" />
+    <Compile Include="Spells\LavaBurst.cs" />
+    <Compile Include="Spells\LightningBolt.cs" />
+    <Compile Include="Spells\MagmaTotem.cs" />
+    <Compile Include="Spells\SearingTotem.cs" />
+    <Compile Include="Spells\Shock.cs" />
+    <Compile Include="Spells\Spell.cs" />
+    <Compile Include="Spells\ISpellArgs.cs" />
+    <Compile Include="Spells\SpellBox.cs" />
+    <Compile Include="Spells\Thunderstorm.cs" />
+    <Compile Include="Spells\Wait.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CalculationOptionsPanelElemental.resx">
+      <DependentUpon>CalculationOptionsPanelElemental.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rawr.Base\Rawr.Base.csproj" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+    <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+  </ItemGroup>
+</Project>

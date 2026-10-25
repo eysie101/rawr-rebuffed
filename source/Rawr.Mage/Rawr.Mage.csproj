@@ -1,0 +1,96 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Rawr.Mage</AssemblyName>
+    <RootNamespace>Rawr.Mage</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>$(NoWarn);CS0618;CS0612;CS1591;CS0162;CS0168;CS0219;CS0414;CS0649;CS0169;CS0108;CS0105;SYSLIB0014</NoWarn>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <Deterministic>true</Deterministic>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PathMap>$(MSBuildProjectDirectory)=/src/Rawr.Mage</PathMap>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ArrayPool.cs" />
+    <Compile Include="CalculationOptionsMage.cs" />
+    <Compile Include="CalculationOptionsPanelMage.cs" />
+    <Compile Include="CalculationOptionsPanelMage.designer.cs" />
+    <Compile Include="CalculationsMage.cs" />
+    <Compile Include="CastingState.cs" />
+    <Compile Include="CharacterCalculationsMage.cs" />
+    <Compile Include="ComparisonCalculationMage.cs" />
+    <Compile Include="CooldownRestrictionsForm.cs" />
+    <Compile Include="CooldownRestrictionsForm.Designer.cs" />
+    <Compile Include="CycleAnalyzer.cs" />
+    <Compile Include="CycleAnalyzer.Designer.cs" />
+    <Compile Include="Encounter.cs" />
+    <Compile Include="SpellInfo\CycleDataArcane.cs" />
+    <Compile Include="SpellInfo\Cycle.cs" />
+    <Compile Include="SpellInfo\CycleDataDeprecated.cs" />
+    <Compile Include="SpellInfo\CycleDataFire.cs" />
+    <Compile Include="SpellInfo\CycleDataFrost.cs" />
+    <Compile Include="SpellInfo\SpellData.cs" />
+    <Compile Include="SpellInfo\SpellTemplate.cs" />
+    <Compile Include="CustomSpellMixForm.cs" />
+    <Compile Include="CustomSpellMixForm.Designer.cs" />
+    <Compile Include="FSRCalc.cs" />
+    <Compile Include="Heap.cs" />
+    <Compile Include="ListUtils.cs" />
+    <Compile Include="LP.cs" />
+    <Compile Include="LU.cs" />
+    <Compile Include="SolverLogForm.cs" />
+    <Compile Include="SolverLogForm.Designer.cs" />
+    <Compile Include="StateDescriptionParser.cs" />
+    <Compile Include="StateDescriptionParseTree.cs" />
+    <Compile Include="StateDescriptionScanner.cs" />
+    <Compile Include="Solver.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="Sequence.cs" />
+    <Compile Include="SequenceGroup.cs" />
+    <Compile Include="SequenceItem.cs" />
+    <Compile Include="Solver.MIP.cs" />
+    <Compile Include="SolverLP.cs" />
+    <Compile Include="SparseMatrix.cs" />
+    <Compile Include="SpellInfo\Spell.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CalculationOptionsPanelMage.resx">
+      <DependentUpon>CalculationOptionsPanelMage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CooldownRestrictionsForm.resx">
+      <DependentUpon>CooldownRestrictionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CycleAnalyzer.resx">
+      <DependentUpon>CycleAnalyzer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomSpellMixForm.resx">
+      <DependentUpon>CustomSpellMixForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SolverLogForm.resx">
+      <DependentUpon>SolverLogForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\CalculationOptionsMage.datasource" />
+    <None Include="Properties\Settings.settings" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rawr.Base\Rawr.Base.csproj" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+    <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,121 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Rawr.Base</AssemblyName>
+    <RootNamespace>Rawr</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>$(NoWarn);CS0618;CS0612;CS1591;CS0162;CS0168;CS0219;CS0414;CS0649;CS0169;CS0108;CS0105;SYSLIB0014</NoWarn>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <Deterministic>true</Deterministic>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PathMap>$(MSBuildProjectDirectory)=/src/Rawr.Base</PathMap>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Algorithms\ArrayPool.cs" />
+    <Compile Include="Algorithms\CalculationCache.cs" />
+    <Compile Include="Algorithms\LU.cs" />
+    <Compile Include="Algorithms\StateSpace.cs" />
+    <Compile Include="Armory.cs" />
+    <Compile Include="ArrayUtils.cs" />
+    <Compile Include="AvailableItemGenerator.cs" />
+    <Compile Include="BatchCharacter.cs" />
+    <Compile Include="BatchOptimizer.cs" />
+    <Compile Include="BatchTools.cs" />
+    <Compile Include="Bosses\BossesT10.cs" />
+    <Compile Include="Bosses\BossesT7.cs" />
+    <Compile Include="Bosses\BossesT8.cs" />
+    <Compile Include="Bosses\BossesT9.cs" />
+    <Compile Include="Bosses\BossHandler.cs" />
+    <Compile Include="Bosses\DG_BossAttacks.cs" />
+    <Compile Include="Bosses\DG_BossAttacks.Designer.cs" />
+    <Compile Include="Bosses\DG_BossSitChanges.cs" />
+    <Compile Include="Bosses\DG_BossSitChanges.Designer.cs" />
+    <Compile Include="Buff.cs" />
+    <Compile Include="Calculations.cs" />
+    <Compile Include="Character.cs" />
+    <Compile Include="CharacterProfilerData.cs" />
+    <Compile Include="BaseStats.cs" />
+    <Compile Include="Bosses\BossList.cs" />
+    <Compile Include="ClassGlyphs.cs" />
+    <Compile Include="ClassTalents.cs" />
+    <Compile Include="CustomControls\ErrorBox.cs" />
+    <Compile Include="CustomControls\ExtendedToolTipCheckBox.cs" />
+    <Compile Include="CustomControls\ExtendedToolTipCheckBox.Designer.cs" />
+    <Compile Include="CustomControls\ExtendedToolTipLabel.cs" />
+    <Compile Include="CustomControls\ExtendedToolTipLabel.designer.cs" />
+    <Compile Include="Enchant.cs" />
+    <Compile Include="EnumHelper.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Exports.cs" />
+    <Compile Include="Graph.cs" />
+    <Compile Include="Graph.designer.cs" />
+    <Compile Include="GemmingTemplate.cs" />
+    <Compile Include="ICharacterCalculationOptions.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="ItemCache.cs" />
+    <Compile Include="ItemFilter.cs" />
+    <Compile Include="ItemLocation.cs" />
+    <Compile Include="ItemUpdater.cs" />
+    <Compile Include="JsonParser.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Algorithms\MarkovProcess.cs" />
+    <Compile Include="Optimizer.cs" />
+    <Compile Include="OptimizerBase.cs" />
+    <Compile Include="OptimizerResults.cs" />
+    <Compile Include="Profs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\CacheSettings.Designer.cs" />
+    <Compile Include="Properties\GeneralSettings.Designer.cs" />
+    <Compile Include="Properties\NetworkSettings.Designer.cs" />
+    <Compile Include="SavedBuffSet.cs" />
+    <Compile Include="SavedTalentSpec.cs" />
+    <Compile Include="SavedVariablesParser.cs" />
+    <Compile Include="SerializableDictionary.cs" />
+    <Compile Include="SpecialDamageProcs.cs" />
+    <Compile Include="SpecialEffect.cs" />
+    <Compile Include="SpecialEffectCombination.cs" />
+    <Compile Include="SpecialEffectInterpolator.cs" />
+    <Compile Include="SpecialEffects.cs" />
+    <Compile Include="SpecialFunction.cs" />
+    <Compile Include="StatConversion.cs" />
+    <Compile Include="StatGraphRenderer.cs" />
+    <Compile Include="Stats.cs" />
+    <Compile Include="StatusMessaging.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="WebRequests.cs" />
+    <Compile Include="Wowhead.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Bosses\DG_BossAttacks.resx">
+      <DependentUpon>DG_BossAttacks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bosses\DG_BossSitChanges.resx">
+      <DependentUpon>DG_BossSitChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graph.resx">
+      <DependentUpon>Graph.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\CacheSettings.settings" />
+    <None Include="Properties\GeneralSettings.settings" />
+    <None Include="Properties\NetworkSettings.settings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+    <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+  </ItemGroup>
+</Project>

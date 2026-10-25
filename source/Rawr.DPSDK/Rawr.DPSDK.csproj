@@ -1,0 +1,72 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Rawr.DPSDK</AssemblyName>
+    <RootNamespace>Rawr.DPSDK</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>$(NoWarn);CS0618;CS0612;CS1591;CS0162;CS0168;CS0219;CS0414;CS0649;CS0169;CS0108;CS0105;SYSLIB0014</NoWarn>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <Deterministic>true</Deterministic>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PathMap>$(MSBuildProjectDirectory)=/src/Rawr.DPSDK</PathMap>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Ability.cs" />
+    <Compile Include="AbilityHandler.cs" />
+    <Compile Include="BloodCycle.cs" />
+    <Compile Include="CalculationOptionsDPSDK.cs" />
+    <Compile Include="CalculationOptionsPanelDPSDK.cs" />
+    <Compile Include="CalculationOptionsPanelDPSDK.Designer.cs" />
+    <Compile Include="CalculationsDPSDK.cs" />
+    <Compile Include="CharacterCalculationsDPSDK.cs" />
+    <Compile Include="CombatTable.cs" />
+    <Compile Include="ComparisonCalculationDPSDK.cs" />
+    <Compile Include="DRW.cs" />
+    <Compile Include="FrostCycle.cs" />
+    <Compile Include="Graph.cs" />
+    <Compile Include="Graph.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="Rotation.cs" />
+    <Compile Include="RotationViewer.cs" />
+    <Compile Include="RotationViewer.Designer.cs" />
+    <Compile Include="StatsSpecialEffects.cs" />
+    <Compile Include="UnholyCycle.cs" />
+    <Compile Include="Weapon.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CalculationOptionsPanelDPSDK.resx">
+      <DependentUpon>CalculationOptionsPanelDPSDK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graph.resx">
+      <DependentUpon>Graph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="RotationViewer.resx">
+      <DependentUpon>RotationViewer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings" />
+    <None Include="app.config" />
+    <None Include="Resources\GraphBase.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rawr.Base\Rawr.Base.csproj" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+    <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+  </ItemGroup>
+</Project>

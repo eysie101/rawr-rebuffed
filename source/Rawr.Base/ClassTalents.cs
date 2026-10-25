@@ -55,12 +55,15 @@ namespace Rawr
             int[] _data = Data;
             string[] tmp = code.Split('.');
             string talents = tmp[0];
-            if (talents.Length >= _data.Length)
+            // Rebuffed 0.3.22: a warrior string of 85 digits (before Unbroken Rage was appended) still loads
+            bool olderWarrior = this is WarriorTalents && _data.Length == 86 && talents.Length == 85;
+            if (talents.Length >= _data.Length || olderWarrior)
             {
                 List<int> data = new List<int>();
                 foreach (Char digit in talents)
                     data.Add(int.Parse(digit.ToString()));
-                data.CopyTo(0, _data, 0, _data.Length);
+                data.CopyTo(0, _data, 0, Math.Min(data.Count, _data.Length));
+                if (olderWarrior && _data[81] > 2) _data[81] = 2;   // Critical Block had 3 ranks, Blood and Thunder has 2
             }
             if (tmp.Length > 1)
             {
@@ -128,7 +131,7 @@ namespace Rawr
             return clone;
         }
 
-        private int[] _data = new int[85];
+        private int[] _data = new int[86];   // Rebuffed 0.3.22: + Unbroken Rage (index 85)
         public override int[] Data { get { return _data; } }
         public WarriorTalents() { }
         public WarriorTalents(string talents)
@@ -730,13 +733,14 @@ namespace Rawr
 @"Focus your protective gaze on a group or raid target, reducing their damage taken by 3% and transfers -10% of the threat they cause to you.  In addition, each time they are hit by an attack your Taunt cooldown is refreshed.  Lasts 30 min.  This effect can only be on one target at a time.",}, "ability_warrior_vigilance")]
         public int Vigilance { get { return _data[75]; } set { _data[75] = value; } }
         /// <summary>
-        /// Reduces the rage cost of your offensive abilities by [1 * Pts]
+        /// Rebuffed 0.3.22: Whitemane talent 2286 in the place of Focused Rage
         /// </summary>
-        [TalentData(76, "Focused Rage", 3, 2, 3, 7, -1, new[] {
-@"Reduces the rage cost of your offensive abilities by 1.",
-@"Reduces the rage cost of your offensive abilities by 2.",
-@"Reduces the rage cost of your offensive abilities by 3.",}, "ability_warrior_focusedrage")]
-        public int FocusedRage { get { return _data[76]; } set { _data[76] = value; } }
+        [TalentData(76, "Painkiller", 3, 2, 3, 7, -1, new[] {
+@"Your successful blocks heal you for 33% of the damage blocked. This effect cannot occur more often than once every 3 sec. Does not work against players and player-controlled minions.",
+@"Your successful blocks heal you for 66% of the damage blocked. This effect cannot occur more often than once every 3 sec. Does not work against players and player-controlled minions.",
+@"Your successful blocks heal you for 100% of the damage blocked. This effect cannot occur more often than once every 3 sec. Does not work against players and player-controlled minions.",}, "ability_warrior_bloodbath")]
+        public int Painkiller { get { return _data[76]; } set { _data[76] = value; } }
+        public int FocusedRage { get { return 0; } set { } }   // Rebuffed 0.3.22: not on Whitemane, the models read 0
         /// <summary>
         /// Increases your total Strength by [2 * Pts]%, Stamina by [3 * Pts]% and your Expertise by [2 * Pts]
         /// </summary>
@@ -765,13 +769,13 @@ namespace Rawr
 @"Sunder the target's armor causing the Sunder Armor effect.  In addition, causes 120% of weapon damage plus 58 for each application of Sunder Armor on the target.  The Sunder Armor effect can stack up to 5 times.",}, "inv_sword_11")]
         public int Devastate { get { return _data[80]; } set { _data[80] = value; } }
         /// <summary>
-        /// Your successful blocks have a [20 * Pts]% chance to block double the normal amount and increases your chance to critically hit with your Shield Slam ability by an additional [5 * Pts]%.
+        /// Rebuffed 0.3.22: Whitemane talent 2287 in the place of Critical Block
         /// </summary>
-        [TalentData(81, "Critical Block", 3, 2, 3, 9, -1, new[] {
-@"Your successful blocks have a 20% chance to block double the normal amount and increases your chance to critically hit with your Shield Slam ability by an additional 5%.",
-@"Your successful blocks have a 40% chance to block double the normal amount and increases your chance to critically hit with your Shield Slam ability by an additional 10%.",
-@"Your successful blocks have a 60% chance to block double the normal amount and increases your chance to critically hit with your Shield Slam ability by an additional 15%.",}, "ability_warrior_criticalblock")]
-        public int CriticalBlock { get { return _data[81]; } set { _data[81] = value; } }
+        [TalentData(81, "Blood and Thunder", 2, 2, 3, 9, -1, new[] {
+@"Your Thunder Clap has a 50% chance to affect every target with Rend.",
+@"Your Thunder Clap has a 100% chance to affect every target with Rend.",}, "warrior_talent_icon_bloodandthunder")]
+        public int BloodAndThunder { get { return _data[81]; } set { _data[81] = value; } }
+        public int CriticalBlock { get { return 0; } set { } }   // Rebuffed 0.3.22: not on Whitemane, the models read 0
         /// <summary>
         /// Increases the critical strike chance of your Devastate ability by [5 * Pts]% and when your Devastate or Revenge ability deals damage it has a [10 * Pts]% chance of refreshing the cooldown of your Shield Slam ability and reducing its cost by 100% for 5 sec.
         /// </summary>
@@ -793,6 +797,12 @@ namespace Rawr
         [TalentData(84, "Shockwave", 1, 2, 2, 11, -1, new[] {
 @"Sends a wave of force in front of the warrior, causing 8 damage (based on attack power) and stunning all enemy targets within 10 yards in a frontal cone for 4 sec.",}, "ability_warrior_shockwave")]
         public int Shockwave { get { return _data[84]; } set { _data[84] = value; } }
+        /// <summary>
+        /// Rebuffed 0.3.22: Whitemane talent 2288, appended as index 85 so that talent strings of older versions keep their positions
+        /// </summary>
+        [TalentData(85, "Unbroken Rage", 1, 2, 4, 7, -1, new[] {
+@"Damage that would take you below 35% health or taken while you are at 35% health is reduced by 20%.",}, "ability_warrior_intensifyrage")]
+        public int UnbrokenRage { get { return _data[85]; } set { _data[85] = value; } }
     }
 
     public partial class WarriorTalentsCata : TalentsBase

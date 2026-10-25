@@ -8,7 +8,8 @@ The bag button right of Export lists only the items a character owns: equipped, 
 
 ## Changes
 
-- 0.3.21: 12 330 Whitemane items, state 2026-10-25.
+- 0.3.22: Whitemane warrior Protection talents (Painkiller, Unbroken Rage, Blood and Thunder).
+- 0.3.21: 12 330 Whitemane items from the game client's item caches of 2026-10-22 and 2026-10-25.
 
 ## Install
 

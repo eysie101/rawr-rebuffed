@@ -1122,7 +1122,7 @@ namespace Rawr.DPSDK
                 };
                 if (talents.UnbreakableArmor > 0)
                 {
-                    statsTalents.AddSpecialEffect(_SE_UnbreakableArmor[character.DeathKnightTalents.GlyphofUnbreakableArmor ? 1 : 0][0]);
+                    statsTalents.AddSpecialEffect(_SE_UnbreakableArmor[0][character.DeathKnightTalents.GlyphofUnbreakableArmor ? 1 : 0]);   // Rebuffed 0.3.23: [cooldown row][glyph]
                 }
             }
             Stats statsTotal = new Stats();
@@ -1602,7 +1602,7 @@ namespace Rawr.DPSDK
             {
                 // As per wowhead: GlyphofUnbreakableArmor
                 // Effect: Apply Aura: Add % Modifier (3) Value: 20
-                FullCharacterStats.AddSpecialEffect(_SE_UnbreakableArmor[character.DeathKnightTalents.GlyphofUnbreakableArmor ? 1 : 0][0]);
+                FullCharacterStats.AddSpecialEffect(_SE_UnbreakableArmor[0][character.DeathKnightTalents.GlyphofUnbreakableArmor ? 1 : 0]);   // Rebuffed 0.3.23: [cooldown row][glyph]
             }
 
             // Acclimation
@@ -2316,11 +2316,11 @@ namespace Rawr.DPSDK
         private static readonly SpecialEffect[][] _SE_UnbreakableArmor = new SpecialEffect[][] {
             new SpecialEffect[] {
                     new SpecialEffect(Trigger.Use, new Stats() { BonusStrengthMultiplier = 0.20f, BaseArmorMultiplier = .25f + (false ? .20f : 0f), BonusArmorMultiplier = .25f + (false ? .20f : 0f) }, 20f, 60f - 0 * 10f),
-                    new SpecialEffect(Trigger.Use, new Stats() { BonusStrengthMultiplier = 0.20f, BaseArmorMultiplier = .25f + (true  ? .20f : 0f), BonusArmorMultiplier = .25f + (true  ? .20f : 0f) }, 20f, 60f - 0 * 10f),
+                    new SpecialEffect(Trigger.Use, new Stats() { BonusStrengthMultiplier = 0.20f, BaseArmorMultiplier = .25f + (true  ? .05f : 0f), BonusArmorMultiplier = .25f + (true  ? .05f : 0f) }, 20f, 60f - 0 * 10f),
             },
             new SpecialEffect[] {
                     new SpecialEffect(Trigger.Use, new Stats() { BonusStrengthMultiplier = 0.20f, BaseArmorMultiplier = .25f + (false ? .20f : 0f), BonusArmorMultiplier = .25f + (false ? .20f : 0f) }, 20f, 60f - 1 * 10f),
-                    new SpecialEffect(Trigger.Use, new Stats() { BonusStrengthMultiplier = 0.20f, BaseArmorMultiplier = .25f + (true  ? .20f : 0f), BonusArmorMultiplier = .25f + (true  ? .20f : 0f) }, 20f, 60f - 1 * 10f),
+                    new SpecialEffect(Trigger.Use, new Stats() { BonusStrengthMultiplier = 0.20f, BaseArmorMultiplier = .25f + (true  ? .05f : 0f), BonusArmorMultiplier = .25f + (true  ? .05f : 0f) }, 20f, 60f - 1 * 10f),
             },
         };
         private static readonly SpecialEffect[] _SE_Acclimation = new SpecialEffect[] {

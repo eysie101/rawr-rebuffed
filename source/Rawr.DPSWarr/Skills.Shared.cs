@@ -286,7 +286,7 @@ namespace Rawr.DPSWarr.Skills
     public class SweepingStrikes : BuffEffect
     {
         // Constructors
-        /// <summary>Your next 5 melee attacks strike an additional nearby opponent.</summary>
+        /// <summary>Your next 10 melee attacks strike an additional nearby opponent.</summary>
         /// <TalentsAffecting>Sweeping Strikes [Requires Talent]</TalentsAffecting>
         /// <GlyphsAffecting>Glyph of Sweeping Strikes [-100% Rage cost]</GlyphsAffecting>
         public SweepingStrikes(Character c, Stats s, CombatFactors cf, WhiteAttacks wa, CalculationOptionsDPSWarr co, BossOptions bo)
@@ -294,7 +294,7 @@ namespace Rawr.DPSWarr.Skills
             Char = c; StatS = s; combatFactors = cf; Whiteattacks = wa; CalcOpts = co; BossOpts = bo;
             //
             Name = "Sweeping Strikes";
-            Description = "Your next 5 melee attacks strike an additional nearby opponent.";
+            Description = "Your next 10 melee attacks strike an additional nearby opponent.";
             AbilIterater = (int)Rawr.DPSWarr.CalculationOptionsDPSWarr.Maintenances.SweepingStrikes_;
             ReqTalent = true;
             Talent2ChksValue = Talents.SweepingStrikes;

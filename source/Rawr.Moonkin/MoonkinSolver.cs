@@ -619,7 +619,7 @@ namespace Rawr.Moonkin
             // Innervate calculations
             float innervateDelay = calcOpts.InnervateDelay * 60.0f;
             int numInnervates = (calcOpts.Innervate && fightLength - innervateDelay > 0) ? ((int)(fightLength - innervateDelay) / (int)innervateCooldown + 1) : 0;
-            float totalInnervateMana = numInnervates * CalculationsMoonkin.BaseMana * (4.5f + (character.DruidTalents.GlyphOfInnervate ? 0.9f : 0.0f));
+            float totalInnervateMana = numInnervates * CalculationsMoonkin.BaseMana * (2.25f + (character.DruidTalents.GlyphOfInnervate ? 0.45f : 0.0f));   // Rebuffed 0.3.23: client 29166 / 54832
 
             // Replenishment calculations
             float replenishmentPerTick = calcs.BasicStats.Mana * calcs.BasicStats.ManaRestoreFromMaxManaPerSecond;

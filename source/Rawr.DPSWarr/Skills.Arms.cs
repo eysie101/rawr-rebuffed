@@ -29,11 +29,11 @@ namespace Rawr.DPSWarr.Skills
             ReqMeleeWeap = true;
             ReqMeleeRange = true;
             //Targets += StatS.BonusTargets;
-            Cd = 6f - (Talents.ImprovedMortalStrike / 3f); // In Seconds
+            Cd = 6f; // In Seconds. Rebuffed 0.3.23: Improved Mortal Strike no longer lowers it (client 35446-35449)
             RageCost = 30f - (Talents.FocusedRage * 1f);
             StanceOkFury = StanceOkArms = StanceOkDef = true;
             DamageBase = combatFactors.NormalizedMhWeaponDmg + 380f;
-            DamageBonus = (1f + Talents.ImprovedMortalStrike / 3f * 0.1f)
+            DamageBonus = (1f + new float[] { 0f, .12f, .23f, .35f }[Math.Min(Talents.ImprovedMortalStrike, 3)])   // Rebuffed 0.3.23: client 35446-35449
                         * (1f + (Talents.GlyphOfMortalStrike ? 0.1f : 0f));
             BonusCritChance = StatS.BonusWarrior_T8_4P_MSBTCritIncrease;
             //

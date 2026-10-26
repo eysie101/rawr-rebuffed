@@ -87,7 +87,7 @@ namespace Rawr.ProtWarr
                 case DamageType.Nature:
                 case DamageType.Shadow:
                 case DamageType.Holy:
-                    return damageTaken * (1.0f - character.WarriorTalents.ImprovedDefensiveStance * 0.03f);
+                    return damageTaken * (1.0f - character.WarriorTalents.ImprovedDefensiveStance * 0.06f);   // Rebuffed 0.3.23: 6 / 12 % (client 29593 / 29594)
                 default:
                     return damageTaken;
             }

@@ -1530,7 +1530,7 @@ These numbers to do not include racial bonuses.",
                                             ((dpswarchar.Char.MainHand.Slot == ItemSlot.TwoHand) ? 1f + talents.TwoHandedWeaponSpecialization * 0.02f : 1f)
                                             *
                     // Titan's Grip Penalty
-                                            ((talents.TitansGrip > 0 && dpswarchar.Char.OffHand != null && (dpswarchar.Char.OffHand.Slot == ItemSlot.TwoHand || dpswarchar.Char.MainHand.Slot == ItemSlot.TwoHand) ? 0.90f : 1f))
+                                            1f   // Rebuffed 0.3.23: Titan's Grip has no damage penalty on Whitemane (client 46917 / 49152)
                     // Convert it back a simple mod number
                                             - 1f
                                          ),
@@ -1538,17 +1538,18 @@ These numbers to do not include racial bonuses.",
                                                  || talents.DeepWounds > 0 // Have Deep Wounds
                                                 ? talents.BloodFrenzy * 0.02f : 0f),
                 PhysicalCrit = talents.Cruelty * 0.01f,
-                BonusStaminaMultiplier = talents.Vitality * 0.02f + talents.StrengthOfArms * 0.02f,
-                BonusStrengthMultiplier = talents.Vitality * 0.02f + talents.StrengthOfArms * 0.02f,
-                Expertise = talents.Vitality * 2.0f + talents.StrengthOfArms * 2.0f,
+                // Rebuffed 0.3.23: Vitality Stamina 6 / 9 / 12 %, Strength 3 / 6 / 9 %, expertise 3 / 6 / 9 (client 29140-29144)
+                BonusStaminaMultiplier = (talents.Vitality > 0 ? 0.03f + talents.Vitality * 0.03f : 0f) + talents.StrengthOfArms * 0.02f,
+                BonusStrengthMultiplier = talents.Vitality * 0.03f + talents.StrengthOfArms * 0.02f,
+                Expertise = talents.Vitality * 3.0f + talents.StrengthOfArms * 2.0f,
                 PhysicalHit = talents.Precision * 0.01f,
                 PhysicalHaste = talents.BloodFrenzy * 0.05f,
                 StunDurReduc = talents.IronWill / 15f,
                 // Defensive
                 Parry = talents.Deflection * 0.01f,
                 Dodge = talents.Anticipation * 0.01f,
-                Block = talents.ShieldSpecialization * 0.01f,
-                BonusBlockValueMultiplier = talents.ShieldMastery * 0.15f,
+                Block = (talents.ShieldSpecialization > 0 ? 0.02f + talents.ShieldSpecialization * 0.01f : 0f),   // Rebuffed 0.3.23: 3-7 % (client 12298-12727)
+                BonusBlockValueMultiplier = talents.ShieldMastery * 0.20f,   // Rebuffed 0.3.23: 20 / 40 % (client 29598 / 29599)
                 BonusShieldSlamDamage = talents.GagOrder * 0.05f,
                 DevastateCritIncrease = talents.SwordAndBoard * 0.05f,
                 BaseArmorMultiplier = talents.Toughness * 0.02f,

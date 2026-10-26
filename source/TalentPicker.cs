@@ -231,6 +231,17 @@ namespace Rawr
                     }
 				}
 
+                // Rebuffed 0.3.23: every glyph of the class; the model's glyph list first, the others after them in grey
+                if (relevant != null)
+                {
+                    foreach (List<GlyphDataAttribute> list in new List<GlyphDataAttribute>[] { majors, minors })
+                    {
+                        List<GlyphDataAttribute> listed = list.FindAll(g => relevant.Contains(g.Name));
+                        listed.AddRange(list.FindAll(g => !relevant.Contains(g.Name)));
+                        list.Clear();
+                        list.AddRange(listed);
+                    }
+                }
                 tabPageGlyphs.SuspendLayout();
 
                 foreach (Control c in grpMajorGlyph.Controls) c.Dispose();
@@ -239,7 +250,7 @@ namespace Rawr
                 int count = 0;
                 foreach (GlyphDataAttribute glyph in majors)
                 {
-                    if (relevant == null || relevant.Contains(glyph.Name))
+                    bool inModelList = relevant == null || relevant.Contains(glyph.Name);   // Rebuffed 0.3.23: every glyph shown
                     {
                         CheckBox cb = new CheckBox();
                         grpMajorGlyph.Controls.Add(cb);
@@ -250,7 +261,8 @@ namespace Rawr
                         cb.UseVisualStyleBackColor = true;
                         cb.Location = new Point(8, 17 + 21 * count);
                         cb.CheckedChanged += new EventHandler(this.glyph_ValueChanged);
-                        tooltipGlyph.SetToolTip(cb, glyph.Description);
+                        tooltipGlyph.SetToolTip(cb, inModelList ? glyph.Description : "Not in this model's glyph list. " + glyph.Description);
+                        if (!inModelList) cb.ForeColor = SystemColors.GrayText;
                         count++;
                     }
                 }
@@ -263,7 +275,7 @@ namespace Rawr
 
                 foreach (GlyphDataAttribute glyph in minors)
                 {
-                    if (relevant == null || relevant.Contains(glyph.Name))
+                    bool inModelList = relevant == null || relevant.Contains(glyph.Name);   // Rebuffed 0.3.23: every glyph shown
                     {
                         CheckBox cb = new CheckBox();
                         grpMinorGlyph.Controls.Add(cb);
@@ -274,7 +286,8 @@ namespace Rawr
                         cb.UseVisualStyleBackColor = true;
                         cb.Location = new Point(6, 19 + 23 * count);
                         cb.CheckedChanged += new EventHandler(this.glyph_ValueChanged);
-                        tooltipGlyph.SetToolTip(cb, glyph.Description);
+                        tooltipGlyph.SetToolTip(cb, inModelList ? glyph.Description : "Not in this model's glyph list. " + glyph.Description);
+                        if (!inModelList) cb.ForeColor = SystemColors.GrayText;
                         count++;
                     }
                 }

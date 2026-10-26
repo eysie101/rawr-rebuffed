@@ -6,8 +6,12 @@ Rawr 2.3.23 for Whitemane Rebuffed (WoW 3.3.5a): Whitemane items, Enhancement me
 
 The bag button right of Export lists only the items a character owns: equipped, bags and bank of the last CharacterProfiler save.
 
+<img src="images/owned-items-button.png" width="544" alt="Owned-items button right of Export"><br>
+<img src="images/characterprofiler-save.png" width="480" alt="save in the CharacterProfiler window"> <img src="images/characterprofiler-info.png" width="323" alt="Rawr: CharacterProfiler steps">
+
 ## Changes
 
+- 0.3.24: Every glyph of the Rebuffed client, glyph and talent tooltips from the client, Whitemane warrior talent values and outdated glyph values in the models.
 - 0.3.22: Whitemane warrior Protection talents (Painkiller, Unbroken Rage, Blood and Thunder).
 - 0.3.21: 12 330 Whitemane items from the game client's item caches of 2026-10-22 and 2026-10-25.
 

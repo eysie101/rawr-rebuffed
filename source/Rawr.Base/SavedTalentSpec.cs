@@ -107,7 +107,10 @@ namespace Rawr
         public bool Equals(TalentsBase talents)
         {
             if (talents == null || Spec == null) return false;
-            return talents.ToString().Equals(Spec) && Class == talents.GetClass();
+            // Rebuffed 0.3.23: compare the parsed spec, not the stored text (older strings are shorter)
+            if (Class != talents.GetClass()) return false;
+            TalentsBase saved = TalentSpec();
+            return saved != null && talents.ToString().Equals(saved.ToString());
         }
     }
 }

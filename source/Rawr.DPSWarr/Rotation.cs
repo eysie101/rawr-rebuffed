@@ -1082,6 +1082,11 @@ namespace Rawr.DPSWarr {
         private static Dictionary<float, SpecialEffect> _SE_ShatteringThrow = new Dictionary<float, SpecialEffect>();
         private static Dictionary<float, SpecialEffect[]> _SE_ThunderClap = new Dictionary<float, SpecialEffect[]>();
         private static Dictionary<float, SpecialEffect> _SE_SunderArmor = new Dictionary<float, SpecialEffect>();
+        public const float RebuffedSweepingStrikesAttacks = 10f;   // Rebuffed 0.3.23: Sweeping Strikes (client 12328; stock 5)
+        public static float RebuffedSweepingStrikesDuration(float landedAttacksPerSecond)   // Rebuffed 0.3.24
+        {
+            return landedAttacksPerSecond > 0f ? RebuffedSweepingStrikesAttacks / landedAttacksPerSecond : 0f;
+        }
         private static Dictionary<float, SpecialEffect> _SE_SweepingStrikes = new Dictionary<float, SpecialEffect>();
         #endregion
         #endregion
@@ -1128,9 +1133,10 @@ namespace Rawr.DPSWarr {
             float landedAtksInterval = LandedAtksOverDur / FightDuration;
             float critRate = CriticalAtksOverDur / AttemptedAtksOverDur;
             if (SW.Validated) {
-                float interval = (float)Math.Round(landedAtksInterval * 5f, 3);
+                // Rebuffed 0.3.23: Sweeping Strikes lasts 10 melee attacks on Whitemane (client 12328); 0.3.24: for 10 / rate s
+                float interval = (float)Math.Round(RebuffedSweepingStrikesDuration(landedAtksInterval), 3);
                 if (!_SE_SweepingStrikes.ContainsKey(interval)) {
-                    _SE_SweepingStrikes.Add(interval, new SpecialEffect(Trigger.Use, new Stats() { BonusTargets = 1f, }, landedAtksInterval * 5f, SW.Cd));
+                    _SE_SweepingStrikes.Add(interval, new SpecialEffect(Trigger.Use, new Stats() { BonusTargets = 1f, }, RebuffedSweepingStrikesDuration(landedAtksInterval), SW.Cd));
                 }
                 statsTotal.AddSpecialEffect(_SE_SweepingStrikes[interval]);
             }

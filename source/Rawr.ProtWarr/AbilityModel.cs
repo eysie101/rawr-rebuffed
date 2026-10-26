@@ -48,10 +48,10 @@ namespace Rawr.ProtWarr
                     baseDamage = Lookup.WeaponDamage(Character, Stats, false) + (222.0f * (1.0f + Talents.ImprovedCleave * 0.4f));
                     break;
                 case Ability.ConcussionBlow:
-                    baseDamage = Stats.AttackPower * 0.38f;
+                    baseDamage = Stats.AttackPower * 0.38f * 7.0f;   // Rebuffed 0.3.23: +600 % against stun-immune targets (client 12809)
                     break;
                 case Ability.DamageShield:
-                    baseDamage = Stats.BlockValue * (Talents.DamageShield * 0.1f);
+                    baseDamage = Stats.BlockValue * (Talents.DamageShield * 0.15f);   // Rebuffed 0.3.23: 15 / 30 % (client 58872 / 58874)
                     break;
                 case Ability.DeepWounds:
                     baseDamage = Lookup.WeaponDamage(Character, Stats, false) * (Talents.DeepWounds * 0.16f);

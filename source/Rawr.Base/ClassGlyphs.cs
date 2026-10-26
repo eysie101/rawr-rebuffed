@@ -28,7 +28,7 @@ namespace Rawr
 
     public partial class MageTalents
     {
-        private bool[] _glyphData = new bool[19];
+        private bool[] _glyphData = new bool[37];   // Rebuffed 0.3.23: + 18 client glyphs
         public override bool[] GlyphData { get { return _glyphData; } }
 
         [GlyphData(0, "Glyph of Fireball", true, @"Reduces the casting time of your Fireball spell by 0.15 sec, but removes the damage over time effect.")]
@@ -43,9 +43,9 @@ namespace Rawr
         public bool GlyphOfImprovedScorch { get { return _glyphData[4]; } set { _glyphData[4] = value; } }
         [GlyphData(5, "Glyph of Mage Armor", true, @"Your Mage Armor spell grants an additional 20% mana regeneration while casting.")]
         public bool GlyphOfMageArmor { get { return _glyphData[5]; } set { _glyphData[5] = value; } }
-        [GlyphData(6, "Glyph of Mana Gem", true, @"Increases the mana recieved from using a mana gem by 40%.")]
+        [GlyphData(6, "Glyph of Mana Gem", true, @"Increases the mana received from using a mana gem by 40%.")]
         public bool GlyphOfManaGem { get { return _glyphData[6]; } set { _glyphData[6] = value; } }
-        [GlyphData(7, "Glyph of Molten Armor", true, @"Your Molten Armor spell grants an additional 20% of your spirit as critical strike rating.")]
+        [GlyphData(7, "Glyph of Molten Armor", true, @"Your Molten Armor grants an additional 20% of your spirit as critical strike rating.")]
         public bool GlyphOfMoltenArmor { get { return _glyphData[7]; } set { _glyphData[7] = value; } }
         [GlyphData(8, "Glyph of Water Elemental", true, @"Reduces the cooldown of your Summon Water Elemental spell by 30 sec.")]
         public bool GlyphOfWaterElemental { get { return _glyphData[8]; } set { _glyphData[8] = value; } }
@@ -69,11 +69,47 @@ namespace Rawr
         public bool GlyphOfDeepFreeze { get { return _glyphData[17]; } set { _glyphData[17] = value; } }
         [GlyphData(18, "Glyph of Eternal Water", true, @"Your Summon Water Elemental now lasts indefinitely, but your Water Elemental can no longer cast Freeze.")]
         public bool GlyphOfEternalWater { get { return _glyphData[18]; } set { _glyphData[18] = value; } }
+        [GlyphData(19, "Glyph of Blink", true, @"Increases the distance you travel with the Blink spell by 5 yards.")]   // Rebuffed 0.3.23: client glyph 314 (spell 56365)
+        public bool GlyphOfBlink { get { return _glyphData[19]; } set { _glyphData[19] = value; } }
+        [GlyphData(20, "Glyph of Evocation", true, @"Your Evocation ability also causes you to regain 60% of your health over its duration.")]   // Rebuffed 0.3.23: client glyph 315 (spell 56380)
+        public bool GlyphOfEvocation { get { return _glyphData[20]; } set { _glyphData[20] = value; } }
+        [GlyphData(21, "Glyph of Fire Blast", true, @"Increases the critical strike chance of Fire Blast by 50% when the target is stunned or incapacitated.")]   // Rebuffed 0.3.23: client glyph 317 (spell 56369)
+        public bool GlyphOfFireBlast { get { return _glyphData[21]; } set { _glyphData[21] = value; } }
+        [GlyphData(22, "Glyph of Frost Nova", true, @"Your Frost Nova targets can take an additional 20% damage before the Frost Nova effect automatically breaks.")]   // Rebuffed 0.3.23: client glyph 318 (spell 56376)
+        public bool GlyphOfFrostNova { get { return _glyphData[22]; } set { _glyphData[22] = value; } }
+        [GlyphData(23, "Glyph of Ice Block", true, @"Your Frost Nova cooldown is now reset every time you use Ice Block.")]   // Rebuffed 0.3.23: client glyph 321 (spell 56372)
+        public bool GlyphOfIceBlock { get { return _glyphData[23]; } set { _glyphData[23] = value; } }
+        [GlyphData(24, "Glyph of Icy Veins", true, @"Your Icy Veins ability also removes all movement slowing and cast time slowing effects.")]   // Rebuffed 0.3.23: client glyph 323 (spell 56374)
+        public bool GlyphOfIcyVeins { get { return _glyphData[24]; } set { _glyphData[24] = value; } }
+        [GlyphData(25, "Glyph of Invisibility", true, @"Increases the duration of the Invisibility effect by 10 sec.")]   // Rebuffed 0.3.23: client glyph 325 (spell 56366)
+        public bool GlyphOfInvisibility { get { return _glyphData[25]; } set { _glyphData[25] = value; } }
+        [GlyphData(26, "Glyph of Polymorph", true, @"Your Polymorph spell also removes all damage over time effects from the target.")]   // Rebuffed 0.3.23: client glyph 329 (spell 56375)
+        public bool GlyphOfPolymorph { get { return _glyphData[26]; } set { _glyphData[26] = value; } }
+        [GlyphData(27, "Glyph of Remove Curse", true, @"Your Remove Curse spell also makes the target immune to all curses for 4 sec.")]   // Rebuffed 0.3.23: client glyph 330 (spell 56364)
+        public bool GlyphOfRemoveCurse { get { return _glyphData[27]; } set { _glyphData[27] = value; } }
+        [GlyphData(28, "Glyph of Arcane Intellect", false, @"Reduces the mana cost of your Arcane Intellect and Arcane Brilliance spells by 50%.")]   // Rebuffed 0.3.23: client glyph 445 (spell 57924)
+        public bool GlyphOfArcaneIntellect { get { return _glyphData[28]; } set { _glyphData[28] = value; } }
+        [GlyphData(29, "Glyph of Fire Ward", false, @"You have an additional 5% chance to reflect Fire spells while your Fire Ward is active.")]   // Rebuffed 0.3.23: client glyph 446 (spell 57926)
+        public bool GlyphOfFireWard { get { return _glyphData[29]; } set { _glyphData[29] = value; } }
+        [GlyphData(30, "Glyph of Frost Ward", false, @"You have an additional 5% chance to reflect Frost spells while your Frost Ward is active.")]   // Rebuffed 0.3.23: client glyph 447 (spell 57927)
+        public bool GlyphOfFrostWard { get { return _glyphData[30]; } set { _glyphData[30] = value; } }
+        [GlyphData(31, "Glyph of Frost Armor", false, @"Increases the duration of your Frost Armor and Ice Armor spells by 30 min.")]   // Rebuffed 0.3.23: client glyph 448 (spell 57928)
+        public bool GlyphOfFrostArmor { get { return _glyphData[31]; } set { _glyphData[31] = value; } }
+        [GlyphData(32, "Glyph of the Bear Cub", false, @"Your Polymorph: Sheep spell polymorphs the target into a polar bear cub instead.")]   // Rebuffed 0.3.23: client glyph 449 (spell 58136)
+        public bool GlyphOfBearCub { get { return _glyphData[32]; } set { _glyphData[32] = value; } }
+        [GlyphData(33, "Glyph of the Penguin", false, @"Your Polymorph: Sheep spell polymorphs the target into a penguin instead.")]   // Rebuffed 0.3.23: client glyph 450 (spell 52648)
+        public bool GlyphOfPenguin { get { return _glyphData[33]; } set { _glyphData[33] = value; } }
+        [GlyphData(34, "Glyph of Slow Fall", false, @"Your Slow Fall spell no longer requires a reagent.")]   // Rebuffed 0.3.23: client glyph 451 (spell 57925)
+        public bool GlyphOfSlowFall { get { return _glyphData[34]; } set { _glyphData[34] = value; } }
+        [GlyphData(35, "Glyph of Blast Wave", false, @"The mana cost of your Blast Wave spell is reduced by 15%, but it no longer knocks enemies back.")]   // Rebuffed 0.3.23: client glyph 611 (spell 62126)
+        public bool GlyphOfBlastWave { get { return _glyphData[35]; } set { _glyphData[35] = value; } }
+        [GlyphData(36, "Glyph of Ice Barrier", true, @"Increases the amount of damage absorbed by your Ice Barrier by 30%.")]   // Rebuffed 0.3.23: client glyph 700 (spell 63095)
+        public bool GlyphOfIceBarrier { get { return _glyphData[36]; } set { _glyphData[36] = value; } }
     }
 
     public partial class DruidTalents
     {
-        private bool[] _glyphData = new bool[25];
+        private bool[] _glyphData = new bool[43];   // Rebuffed 0.3.23: + 18 client glyphs
         public override bool[] GlyphData { get { return _glyphData; } }
 
         //Cat Glyphs
@@ -85,7 +121,7 @@ namespace Rawr
         public bool GlyphOfRip { get { return _glyphData[2]; } set { _glyphData[2] = value; } }
         [GlyphData(3, "Glyph of Berserk", true, @"Increases the duration of Berserk by 5 sec.")]
         public bool GlyphOfBerserk { get { return _glyphData[3]; } set { _glyphData[3] = value; } }
-        [GlyphData(4, "Glyph of Savage Roar", true, @"Your Savage Roar ability grants an additional 3% bonnus damage done.")]
+        [GlyphData(4, "Glyph of Savage Roar", true, @"Your Savage Roar ability grants an additional 3% bonus damage done.")]
         public bool GlyphOfSavageRoar { get { return _glyphData[4]; } set { _glyphData[4] = value; } }
 
         //Bear Glyphs
@@ -97,9 +133,9 @@ namespace Rawr
         public bool GlyphOfFrenziedRegeneration { get { return _glyphData[7]; } set { _glyphData[7] = value; } }
         
         //Moonkin Glyphs
-        [GlyphData(8, "Glyph of Focus", true, @"Increases the damage done by Starfall by 20%, but decreases its radius by 50%.")]
+        [GlyphData(8, "Glyph of Focus", true, @"Increases the damage done by Starfall by 10%, but decreases its radius by 50%.")]
         public bool GlyphOfFocus { get { return _glyphData[8]; } set { _glyphData[8] = value; } }
-        [GlyphData(9, "Glyph of Insect Swarm", true, @"Increases the damage of your Insect Swarm ability by 20%, but it no longer affects your victim's chance to hit.")]
+        [GlyphData(9, "Glyph of Insect Swarm", true, @"Increases the damage of your Insect Swarm ability by 30%, but it no longer affects your victim's chance to hit.")]
         public bool GlyphOfInsectSwarm { get { return _glyphData[9]; } set { _glyphData[9] = value; } }
         [GlyphData(10, "Glyph of Monsoon", true, @"Reduces the cooldown of your Typhoon spell by 3 sec.")]
         public bool GlyphOfMonsoon { get { return _glyphData[10]; } set { _glyphData[10] = value; } }
@@ -113,13 +149,13 @@ namespace Rawr
         public bool GlyphOfWrath { get { return _glyphData[14]; } set { _glyphData[14] = value; } }
 
         //Tree Glyphs
-        [GlyphData(15, "Glyph of Healing Touch", true, @"Decreases the cast time of Healing Touch by 1.5 sec., the mana cost by 25%, and the amount healed by 50%.")]
+        [GlyphData(15, "Glyph of Healing Touch", true, @"Decreases the cast time of Healing Touch by 1.5 sec, the mana cost by 25%, and the amount healed by 50%.")]
         public bool GlyphOfHealingTouch { get { return _glyphData[15]; } set { _glyphData[15] = value; } }
-        [GlyphData(16, "Glyph of Innervate", true, @"Innervate now grants the caster 90% of his base mana pool over 20 sec in addition to the normal effects of Innervate.")]
+        [GlyphData(16, "Glyph of Innervate", true, @"Innervate now grants the caster 45% of his base mana pool over 10 sec in addition to the normal effects of Innervate.")]
         public bool GlyphOfInnervate { get { return _glyphData[16]; } set { _glyphData[16] = value; } }
         [GlyphData(17, "Glyph of Lifebloom", true, @"Increases the duration of Lifebloom by 1 sec.")]
         public bool GlyphOfLifebloom { get { return _glyphData[17]; } set { _glyphData[17] = value; } }
-        [GlyphData(18, "Glyph of Nourish", true, @"Your Nourish heals for an additional 6% for each of your heal over time effects present on the target.")]
+        [GlyphData(18, "Glyph of Nourish", true, @"Your Nourish heals an additional 6% for each of your heal over time effects present on the target.")]
         public bool GlyphOfNourish { get { return _glyphData[18]; } set { _glyphData[18] = value; } }
         [GlyphData(19, "Glyph of Rebirth", true, @"Players resurrected by Rebirth are returned to life with 100% health.")]
         public bool GlyphOfRebirth { get { return _glyphData[19]; } set { _glyphData[19] = value; } }
@@ -133,11 +169,47 @@ namespace Rawr
         public bool GlyphOfWildGrowth { get { return _glyphData[23]; } set { _glyphData[23] = value; } }
         [GlyphData(24, "Glyph of Rapid Rejuvenation", true, @"Your haste now reduces the time between the periodic healing ticks of your Rejuvenation spell.")]
         public bool GlyphOfRapidRejuvenation { get { return _glyphData[24]; } set { _glyphData[24] = value; } }
+        [GlyphData(25, "Glyph of the White Bear", false, @"Your bear and dire bear forms take on the appearance of a polar bear.")]   // Rebuffed 0.3.23: client glyph 141 (spell 54292)
+        public bool GlyphOfWhiteBear { get { return _glyphData[25]; } set { _glyphData[25] = value; } }
+        [GlyphData(26, "Glyph of Rake", true, @"Your Rake ability prevents targets from fleeing.")]   // Rebuffed 0.3.23: client glyph 167 (spell 54821)
+        public bool GlyphOfRake { get { return _glyphData[26]; } set { _glyphData[26] = value; } }
+        [GlyphData(27, "Glyph of Hurricane", true, @"Your Hurricane ability now also slows the movement speed of its victims by 20%.")]   // Rebuffed 0.3.23: client glyph 177 (spell 54831)
+        public bool GlyphOfHurricane { get { return _glyphData[27]; } set { _glyphData[27] = value; } }
+        [GlyphData(28, "Glyph of Entangling Roots", true, @"Increases the damage your Entangling Roots victims can take before the Entangling Roots automatically breaks by 20%.")]   // Rebuffed 0.3.23: client glyph 181 (spell 54760)
+        public bool GlyphOfEntanglingRoots { get { return _glyphData[28]; } set { _glyphData[28] = value; } }
+        [GlyphData(29, "Glyph of Aquatic Form", false, @"Increases your swim speed by 50% while in Aquatic Form.")]   // Rebuffed 0.3.23: client glyph 431 (spell 57856)
+        public bool GlyphOfAquaticForm { get { return _glyphData[29]; } set { _glyphData[29] = value; } }
+        [GlyphData(30, "Glyph of Challenging Roar", false, @"Reduces the cooldown of your Challenging Roar ability by 30 sec.")]   // Rebuffed 0.3.23: client glyph 432 (spell 57858)
+        public bool GlyphOfChallengingRoar { get { return _glyphData[30]; } set { _glyphData[30] = value; } }
+        [GlyphData(31, "Glyph of the Wild", false, @"Mana cost of your Mark of the Wild and Gift of the Wild spells reduced by 50%.")]   // Rebuffed 0.3.23: client glyph 433 (spell 57855)
+        public bool GlyphOfWild { get { return _glyphData[31]; } set { _glyphData[31] = value; } }
+        [GlyphData(32, "Glyph of Unburdened Rebirth", false, @"Your Rebirth spell no longer requires a reagent.")]   // Rebuffed 0.3.23: client glyph 434 (spell 57857)
+        public bool GlyphOfUnburdenedRebirth { get { return _glyphData[32]; } set { _glyphData[32] = value; } }
+        [GlyphData(33, "Glyph of Thorns", false, @"Increases the duration of your Thorns ability by 50 min when cast on yourself.")]   // Rebuffed 0.3.23: client glyph 435 (spell 57862)
+        public bool GlyphOfThorns { get { return _glyphData[33]; } set { _glyphData[33] = value; } }
+        [GlyphData(34, "Glyph of the Forest Lynx", false, @"You appear as a forest lynx while in Cat Form.")]   // Rebuffed 0.3.23: client glyph 436 (spell 58133)
+        public bool GlyphOfForestLynx { get { return _glyphData[34]; } set { _glyphData[34] = value; } }
+        [GlyphData(35, "Glyph of the Black Bear", false, @"Your bear and dire bear forms take on the appearance of a black bear.")]   // Rebuffed 0.3.23: client glyph 438 (spell 58132)
+        public bool GlyphOfBlackBear { get { return _glyphData[35]; } set { _glyphData[35] = value; } }
+        [GlyphData(36, "Glyph of Dash", false, @"Reduces the cooldown of your Dash ability by 20%.")]   // Rebuffed 0.3.23: client glyph 551 (spell 59219)
+        public bool GlyphOfDash { get { return _glyphData[36]; } set { _glyphData[36] = value; } }
+        [GlyphData(37, "Glyph of Typhoon", false, @"Reduces the cost of your Typhoon spell by 8% and increases its radius by 10 yards, but it no longer knocks enemies back.")]   // Rebuffed 0.3.23: client glyph 613 (spell 62135)
+        public bool GlyphOfTyphoon { get { return _glyphData[37]; } set { _glyphData[37] = value; } }
+        [GlyphData(38, "Glyph of Barkskin", true, @"Reduces the chance you'll be critically hit by melee attacks by 25% while Barkskin is active.")]   // Rebuffed 0.3.23: client glyph 676 (spell 63057)
+        public bool GlyphOfBarkskin { get { return _glyphData[38]; } set { _glyphData[38] = value; } }
+        [GlyphData(39, "Glyph of Survival Instincts", true, @"Your Survival Instincts ability grants an additional 15% of your maximum health.")]   // Rebuffed 0.3.23: client glyph 811 (spell 65243)
+        public bool GlyphOfSurvivalInstincts { get { return _glyphData[39]; } set { _glyphData[39] = value; } }
+        [GlyphData(40, "Glyph of Claw", true, @"Reduces the energy cost of your Claw ability by 5.")]   // Rebuffed 0.3.23: client glyph 831 (spell 67598)
+        public bool GlyphOfClaw { get { return _glyphData[40]; } set { _glyphData[40] = value; } }
+        [GlyphData(41, "Glyph of Stars", false, @"Your Moonkin Form now appears as Astral Form, conferring all the same benefits, but appearing as an astrally enhanced version of your normal humanoid form.")]   // Rebuffed 0.3.23: client glyph 912 (spell 80965)
+        public bool GlyphOfStars { get { return _glyphData[41]; } set { _glyphData[41] = value; } }
+        [GlyphData(42, "Glyph of Omen of Clarity", true, @"Your Omen of Clarity talent has a 100% chance to be triggered by successfully casting Faerie Fire (Feral). Does not trigger on players or player-controlled pets.")]   // Rebuffed 0.3.23: client glyph 913 (spell 81001)
+        public bool GlyphOfOmenOfClarity { get { return _glyphData[42]; } set { _glyphData[42] = value; } }
     }
 
     public partial class PaladinTalents
     {
-        private bool[] _glyphData = new bool[34];
+        private bool[] _glyphData = new bool[36];   // Rebuffed 0.3.23: + 2 client glyphs
         public override bool[] GlyphData { get { return _glyphData; } }
         
         [GlyphData(0, "Glyph of Avenging Wrath", true, @"Reduces the cooldown of your Hammer of Wrath spell by 50% while Avenging Wrath is active.")]
@@ -184,13 +256,13 @@ namespace Rawr
         public bool GlyphOfExorcism { get { return _glyphData[20]; } set { _glyphData[20] = value; } }
         [GlyphData(21, "Glyph of Flash of Light", true, @"Your Flash of Light has an additional 5% critical strike chance.")]
         public bool GlyphOfFlashOfLight { get { return _glyphData[21]; } set { _glyphData[21] = value; } }
-        [GlyphData(22, "Glyph of Seal of Command", true, @"Increases the chance of dealing Seal of Command damage by 20%.")]
+        [GlyphData(22, "Glyph of Seal of Command", true, @"You gain 8% of your base mana each time you use a Judgement with Seal of Command active.")]
         public bool GlyphOfSealOfCommand { get { return _glyphData[22]; } set { _glyphData[22] = value; } }
         [GlyphData(23, "Glyph of Blessing of Kings", false, @"Reduces the mana cost of your Blessing of Kings and Greater Blessing of Kings spells by 50%.")]
         public bool GlyphOfBlessingOfKings { get { return _glyphData[23]; } set { _glyphData[23] = value; } }
         [GlyphData(24, "Glyph of Sense Undead", false, @"Damage against Undead increased by 1% while your Sense Undead ability is active.")]
         public bool GlyphOfSenseUndead { get { return _glyphData[24]; } set { _glyphData[24] = value; } }
-        [GlyphData(25, "Glyph of Righteous Defense", true, @"Increases the chance for your Righteous Defense ability to work successfully by 8% on each target.")]
+        [GlyphData(25, "Glyph of Righteous Defense", true, @"Increases the chance for your Righteous Defense and Hand of Reckoning abilities to work successfully by 8% on each target.")]
         public bool GlyphOfRighteousDefense { get { return _glyphData[25]; } set { _glyphData[25] = value; } }
         [GlyphData(26, "Glyph of Spiritual Attunement", true, @"Increases the amount of mana gained from your Spiritual Attunement spell by an additional 2%.")]
         public bool GlyphOfSpiritualAttunement { get { return _glyphData[26]; } set { _glyphData[26] = value; } }
@@ -208,11 +280,15 @@ namespace Rawr
         public bool GlyphOfHolyLight { get { return _glyphData[32]; } set { _glyphData[32] = value; } }
         [GlyphData(33, "Glyph of Blessing of Might", false, @"Increases the duration of your Blessing of Might spell by 20 min when cast on yourself.")]
         public bool GlyphOfBlessingOfMight { get { return _glyphData[33]; } set { _glyphData[33] = value; } }
+        [GlyphData(34, "Glyph of Holy Wrath", true, @"Reduces the cooldown of your Holy Wrath spell by 15 sec.")]   // Rebuffed 0.3.23: client glyph 559 (spell 56420)
+        public bool GlyphOfHolyWrath { get { return _glyphData[34]; } set { _glyphData[34] = value; } }
+        [GlyphData(35, "Glyph of Reckoning", true, @"Your Hand of Reckoning spell no longer taunts the target and can deal damage to untauntable targets.")]   // Rebuffed 0.3.23: client glyph 914 (spell 81002)
+        public bool GlyphOfReckoning { get { return _glyphData[35]; } set { _glyphData[35] = value; } }
     }
 
     public partial class WarriorTalents
     {
-        private bool[] _glyphData = new bool[34];
+        private bool[] _glyphData = new bool[35];   // Rebuffed 0.3.23: + 1 client glyphs
         public override bool[] GlyphData { get { return _glyphData; } }
         
         // ===== MAJOR GLYPHS =====
@@ -225,8 +301,8 @@ namespace Rawr
         /// <summary>Increases your block value by 10% for 10 sec after using your Shield Slam ability.</summary>
         [GlyphData(2, "Glyph of Blocking", true, @"Increases your block value by 10% for 10 sec after using your Shield Slam ability.")]
         public bool GlyphOfBlocking { get { return _glyphData[2]; } set { _glyphData[2] = value; } }
-        /// <summary>Increases the healing your recieve from Bloodthirst ability by 100%.</summary>
-        [GlyphData(3, "Glyph of Bloodthirst", true, @"Increases the healing your recieve from Bloodthirst ability by 100%.")]
+        /// <summary>Increases the healing you receive from your Bloodthirst ability by 100%.</summary>
+        [GlyphData(3, "Glyph of Bloodthirst", true, @"Increases the healing you receive from your Bloodthirst ability by 100%.")]
         public bool GlyphOfBloodthirst { get { return _glyphData[3]; } set { _glyphData[3] = value; } }
         /// <summary>Increases the number of targets your Cleave hits by 1.</summary>
         [GlyphData(4, "Glyph of Cleaving", true, @"Increases the number of targets your Cleave hits by 1.")]
@@ -234,8 +310,8 @@ namespace Rawr
         /// <summary>Your Devastate ability now applies two stacks of Sunder Armor.</summary>
         [GlyphData(5, "Glyph of Devastate", true, @"Your Devastate ability now applies two stacks of Sunder Armor.")]
         public bool GlyphOfDevastate { get { return _glyphData[5]; } set { _glyphData[5] = value; } }
-        /// <summary>Your Enraged Regeneration ability heals for an additional 10% of your health over it's duration.</summary>
-        [GlyphData(6, "Glyph of Enraged Regeneration", true, @"Your Enraged Regeneration ability heals for an additional 10% of your health over it's duration.")]
+        /// <summary>Your Enraged Regeneration ability heals for an additional 10% of your health over its duration.</summary>
+        [GlyphData(6, "Glyph of Enraged Regeneration", true, @"Your Enraged Regeneration ability heals for an additional 10% of your health over its duration.")]
         public bool GlyphOfEnragedRegeneration { get { return _glyphData[6]; } set { _glyphData[6] = value; } }
         /// <summary>Your Execute ability deals damage as if you had 10 additional rage.</summary>
         [GlyphData(7, "Glyph of Execution", true, @"Your Execute ability deals damage as if you had 10 additional rage.")]
@@ -246,8 +322,8 @@ namespace Rawr
         /// <summary>You gain 10 rage when you critically strike with your Heroic Strike ability.</summary>
         [GlyphData(9, "Glyph of Heroic Strike", true, @"You gain 10 rage when you critically strike with your Heroic Strike ability.")]
         public bool GlyphOfHeroicStrike { get { return _glyphData[9]; } set { _glyphData[9] = value; } }
-        /// <summary>Increases the number of attacks you intercept for your intervene target by 1.</summary>
-        [GlyphData(10, "Glyph of Intervene", true, @"Increases the number of attacks you intercept for your intervene target by 1.")]
+        /// <summary>Increases the number attacks you intercept for your Intervene target by 1.</summary>
+        [GlyphData(10, "Glyph of Intervene", true, @"Increases the number attacks you intercept for your Intervene target by 1.")]
         public bool GlyphOfIntervene { get { return _glyphData[10]; } set { _glyphData[10] = value; } }
         /// <summary>Reduces the cooldown of your Last Stand ability by 1 min.</summary>
         [GlyphData(11, "Glyph of Last Stand", true, @"Reduces the cooldown of your Last Stand ability by 1 min.")]
@@ -279,27 +355,27 @@ namespace Rawr
         /// <summary>Reduces the cooldown on Spell Reflection by 1 sec.</summary>
         [GlyphData(20, "Glyph of Spell Reflection", true, @"Reduces the cooldown on Spell Reflection by 1 sec.")]
         public bool GlyphOfSpellReflection { get { return _glyphData[20]; } set { _glyphData[20] = value; } }
-        /// <summary>Your Sunder Armor ability effects a second nearby target.</summary>
-        [GlyphData(21, "Glyph of Sunder Armor", true, @"Your Sunder Armor ability effects a second nearby target.")]
+        /// <summary>Your Sunder Armor ability affects a second nearby target.</summary>
+        [GlyphData(21, "Glyph of Sunder Armor", true, @"Your Sunder Armor ability affects a second nearby target.")]
         public bool GlyphOfSunderArmor { get { return _glyphData[21]; } set { _glyphData[21] = value; } }
-        /// <summary>Reduces the rage cost of Sweeping Strikes ability by 100%.</summary>
-        [GlyphData(22, "Glyph of Sweeping Strikes", true, @"Reduces the rage cost of Sweeping Strikes ability by 100%.")]
+        /// <summary>Reduces the rage cost of your Sweeping Strikes ability by 100%.</summary>
+        [GlyphData(22, "Glyph of Sweeping Strikes", true, @"Reduces the rage cost of your Sweeping Strikes ability by 100%.")]
         public bool GlyphOfSweepingStrikes { get { return _glyphData[22]; } set { _glyphData[22] = value; } }
-        /// <summary>Increases the change for your Taunt ability to succeed by 8%.</summary>
-        [GlyphData(23, "Glyph of Taunt", true, @"Increases the change for your Taunt ability to succeed by 8%.")]
+        /// <summary>Increases the chance for your Taunt ability to succeed by 8%.</summary>
+        [GlyphData(23, "Glyph of Taunt", true, @"Increases the chance for your Taunt ability to succeed by 8%.")]
         public bool GlyphOfTaunt { get { return _glyphData[23]; } set { _glyphData[23] = value; } }
-        /// <summary>Your Victory Rush ability has a 30% increased critical strike chance against targets above 70% health.</summary>
-        [GlyphData(24, "Glyph of Victory Rush", true, @"Your Victory Rush ability has a 30% increased critical strike chance against targets above 70% health.")]
+        /// <summary>Your Victory Rush ability has a 30% increased critical strike chance.</summary>
+        [GlyphData(24, "Glyph of Victory Rush", true, @"Your Victory Rush ability has a 30% increased critical strike chance.")]
         public bool GlyphOfVictoryRush { get { return _glyphData[24]; } set { _glyphData[24] = value; } }
         /// <summary>Your Vigilance ability transfers an additional 5% of your target's threat to you.</summary>
         [GlyphData(25, "Glyph of Vigilance", true, @"Your Vigilance ability transfers an additional 5% of your target's threat to you.")]
         public bool GlyphOfVigilance { get { return _glyphData[25]; } set { _glyphData[25] = value; } }
-        /// <summary>Reduces the cooldown of your Whirlwind ability by 2 sec.</summary>
-        [GlyphData(26, "Glyph of Whirlwind", true, @"Reduces the cooldown of your Whirlwind ability by 2 sec.")]
+        /// <summary>Reduces the cooldown of your Whirlwind by 2 sec.</summary>
+        [GlyphData(26, "Glyph of Whirlwind", true, @"Reduces the cooldown of your Whirlwind by 2 sec.")]
         public bool GlyphOfWhirlwind { get { return _glyphData[26]; } set { _glyphData[26] = value; } }
         // ===== MINOR GLYPHS =====
-        /// <summary>Increases the duration of your Battle Shout by 2 min.</summary>
-        [GlyphData(27, "Glyph of Battle", false, @"Increases the duration of your Battle Shout by 2 min.")]
+        /// <summary>Increases the duration of your Battle Shout ability by 2 min.</summary>
+        [GlyphData(27, "Glyph of Battle", false, @"Increases the duration of your Battle Shout ability by 2 min.")]
         public bool GlyphOfBattle { get { return _glyphData[27]; } set { _glyphData[27] = value; } }
         /// <summary>Reduces the health cost of your Bloodrage ability by 100%.</summary>
         [GlyphData(28, "Glyph of Bloodrage", false, @"Reduces the health cost of your Bloodrage ability by 100%.")]
@@ -318,6 +394,8 @@ namespace Rawr
         public bool GlyphOfThunderClap { get { return _glyphData[32]; } set { _glyphData[32] = value; } }
         [GlyphData(33, "Glyph of Command", false, @"Increases the duration of your Commanding Shout ability by 2 min.")]
         public bool GlyphOfCommand { get { return _glyphData[33]; } set { _glyphData[33] = value; } }
+        [GlyphData(34, "Glyph of Shattering Throw", false, @"Your Shattering Throw is now instant and can be used in any stance, but it no longer removes invulnerabilities and cannot be used on players or player-controlled targets.")]   // Rebuffed 0.3.23: client glyph 915 (spell 81013)
+        public bool GlyphOfShatteringThrow { get { return _glyphData[34]; } set { _glyphData[34] = value; } }
     }
 
     public partial class WarriorTalentsCata
@@ -432,30 +510,30 @@ namespace Rawr
 
     public partial class ShamanTalents
     {
-        private bool[] _glyphData = new bool[29];
+        private bool[] _glyphData = new bool[37];   // Rebuffed 0.3.23: + 8 client glyphs
         public override bool[] GlyphData { get { return _glyphData; } }
 
         [GlyphData(0, "Glyph of Healing Wave", true, @"Your Healing Wave also heals you for 20% of the healing effect when you heal someone else.")]
         public bool GlyphofHealingWave { get { return _glyphData[0]; } set { _glyphData[0] = value; } }
         [GlyphData(1, "Glyph of Lightning Bolt", true, @"Increases the damage dealt by Lightning Bolt by 4%.")]
         public bool GlyphofLightningBolt { get { return _glyphData[1]; } set { _glyphData[1] = value; } }
-        [GlyphData(2, "Glyph of Shocking", true, @"Reduces the global cooldown triggered by your shock spells by 0.5 sec.")]
+        [GlyphData(2, "Glyph of Shocking", true, @"Reduces the global cooldown triggered by your shock spells to 1 sec.")]
         public bool GlyphofShocking { get { return _glyphData[2]; } set { _glyphData[2] = value; } }
         [GlyphData(3, "Glyph of Lightning Shield", true, @"Increases the damage from Lightning Shield by 20%.")]
         public bool GlyphofLightningShield { get { return _glyphData[3]; } set { _glyphData[3] = value; } }
         [GlyphData(4, "Glyph of Flame Shock", true, @"Increases the critical strike damage bonus of your Flame Shock damage by 60%.")]
         public bool GlyphofFlameShock { get { return _glyphData[4]; } set { _glyphData[4] = value; } }
-        [GlyphData(5, "Glyph of Flametongue Weapon", true, @"Increases spell critical strike chance by 2% while Flametongue Weapon is active.")]
+        [GlyphData(5, "Glyph of Flametongue Weapon", true, @"Increases your spell critical strike chance by 2% on each of your weapons with Flametongue Weapon active.")]
         public bool GlyphofFlametongueWeapon { get { return _glyphData[5]; } set { _glyphData[5] = value; } }
         [GlyphData(6, "Glyph of Lava Lash", true, @"Damage on your Lava Lash is increased by an additional 10% if your weapon is enchanted with Flametongue.")]
         public bool GlyphofLavaLash { get { return _glyphData[6]; } set { _glyphData[6] = value; } }
-        [GlyphData(7, "Glyph of Fire Nova", true, @"Reduces the cooldown of your Fire Nova by 3 seconds.")]
+        [GlyphData(7, "Glyph of Fire Nova", true, @"Reduces the cooldown of your Fire Nova spell by 3 seconds.")]
         public bool GlyphofFireNova { get { return _glyphData[7]; } set { _glyphData[7] = value; } }
         [GlyphData(8, "Glyph of Frost Shock", true, @"Increases the duration of your Frost Shock by 2 sec.")]
         public bool GlyphofFrostShock { get { return _glyphData[8]; } set { _glyphData[8] = value; } }
         [GlyphData(9, "Glyph of Healing Stream Totem", true, @"Your Healing Stream Totem heals for an additional 20%.")]
         public bool GlyphofHealingStreamTotem { get { return _glyphData[9]; } set { _glyphData[9] = value; } }
-        [GlyphData(10, "Glyph of Lesser Healing Wave", true, @"Your Lesser Healing Wave heals for 20% more if the target is also affected by your Earth Shield.")]
+        [GlyphData(10, "Glyph of Lesser Healing Wave", true, @"Your Lesser Healing Wave heals for 20% more if the target is also affected by Earth Shield.")]
         public bool GlyphofLesserHealingWave { get { return _glyphData[10]; } set { _glyphData[10] = value; } }
         [GlyphData(11, "Glyph of Water Mastery", true, @"Increases the passive mana regeneration of your Water Shield spell by 30%.")]
         public bool GlyphofWaterMastery { get { return _glyphData[11]; } set { _glyphData[11] = value; } }
@@ -489,29 +567,45 @@ namespace Rawr
         public bool GlyphofElementalMastery { get { return _glyphData[25]; } set { _glyphData[25] = value; } }
         [GlyphData(26, "Glyph of Lava", true, @"Your Lava Burst spell gains an additional 10% of your spellpower.")]
         public bool GlyphofLava { get { return _glyphData[26]; } set { _glyphData[26] = value; } }
-        [GlyphData(27, "Glyph of Fire Elemental Totem", true, @"Reduces the cooldown of your Fire Elemental Totem by 10 min.")]
+        [GlyphData(27, "Glyph of Fire Elemental Totem", true, @"Reduces the cooldown of your Fire Elemental Totem by 5 min.")]
         public bool GlyphofFireElementalTotem { get { return _glyphData[27]; } set { _glyphData[27] = value; } }
-        [GlyphData(28, "Glyph of Thunderstorm", false, @"Increases the mana you recieve from your Thunderstorm spell by 2%, but it no longer knocks enemies back.")]
+        [GlyphData(28, "Glyph of Thunderstorm", false, @"Increases the mana you receive from your Thunderstorm spell by 2%, but it no longer knocks enemies back.")]
         public bool GlyphofThunderstorm { get { return _glyphData[28]; } set { _glyphData[28] = value; } }
+        [GlyphData(29, "Glyph of Astral Recall", false, @"Cooldown of your Astral Recall spell reduced by 7.5 min.")]   // Rebuffed 0.3.23: client glyph 470 (spell 58058)
+        public bool GlyphofAstralRecall { get { return _glyphData[29]; } set { _glyphData[29] = value; } }
+        [GlyphData(30, "Glyph of the Arctic Wolf", false, @"You appears as an arctic wolf when using your Ghost Wolf spell.")]   // Rebuffed 0.3.23: client glyph 471 (spell 58135)
+        public bool GlyphofArcticWolf { get { return _glyphData[30]; } set { _glyphData[30] = value; } }
+        [GlyphData(31, "Glyph of the Black Wolf", false, @"You appears as a black wolf when using your Ghost Wolf spell.")]   // Rebuffed 0.3.23: client glyph 472 (spell 58134)
+        public bool GlyphofBlackWolf { get { return _glyphData[31]; } set { _glyphData[31] = value; } }
+        [GlyphData(32, "Glyph of Renewed Life", false, @"Your Reincarnation spell no longer requires a reagent.")]   // Rebuffed 0.3.23: client glyph 473 (spell 58059)
+        public bool GlyphofRenewedLife { get { return _glyphData[32]; } set { _glyphData[32] = value; } }
+        [GlyphData(33, "Glyph of Water Breathing", false, @"Your Water Breathing spell no longer requires a reagent.")]   // Rebuffed 0.3.23: client glyph 474 (spell 58055)
+        public bool GlyphofWaterBreathing { get { return _glyphData[33]; } set { _glyphData[33] = value; } }
+        [GlyphData(34, "Glyph of Water Shield", false, @"Increases the number of charges on your Water Shield spell by 1.")]   // Rebuffed 0.3.23: client glyph 475 (spell 58063)
+        public bool GlyphofWaterShield { get { return _glyphData[34]; } set { _glyphData[34] = value; } }
+        [GlyphData(35, "Glyph of Water Walking", false, @"Your Water Walking spell no longer requires a reagent.")]   // Rebuffed 0.3.23: client glyph 476 (spell 58057)
+        public bool GlyphofWaterWalking { get { return _glyphData[35]; } set { _glyphData[35] = value; } }
+        [GlyphData(36, "Glyph of Ghost Wolf", false, @"Your Ghost Wolf form regenerates an additional 1% of your maximum health every 5 sec.")]   // Rebuffed 0.3.23: client glyph 552 (spell 59289)
+        public bool GlyphofGhostWolf { get { return _glyphData[36]; } set { _glyphData[36] = value; } }
     }
 
     public partial class PriestTalents
     {
-        private bool[] _glyphData = new bool[33];
+        private bool[] _glyphData = new bool[34];   // Rebuffed 0.3.23: + 1 client glyphs
         public override bool[] GlyphData { get { return _glyphData; } }
 
         // Major
         [GlyphData(0, "Glyph of Circle of Healing", true, @"Your Circle of Healing spell heals 1 additional target.")]
         public bool GlyphofCircleOfHealing { get { return _glyphData[0]; } set { _glyphData[0] = value; } }
-        [GlyphData(1, "Glyph of Dispel Magic", true, @"Your Dispel Magic spell also heals your target for 3% maximum health.")]
+        [GlyphData(1, "Glyph of Dispel Magic", true, @"Your Dispel Magic spell also heals your target for 3% of maximum health.")]
         public bool GlyphofDispelMagic { get { return _glyphData[1]; } set { _glyphData[1] = value; } }
-        [GlyphData(2, "Glyph of Dispersion", true, @"Reduces the cooldown of your Dispersion by 45 sec.")]
+        [GlyphData(2, "Glyph of Dispersion", true, @"Reduces the cooldown on Dispersion by 45 sec.")]
         public bool GlyphofDispersion { get { return _glyphData[2]; } set { _glyphData[2] = value; } }
         [GlyphData(3, "Glyph of Fade", true, @"Reduces the cooldown of your Fade spell by 9 sec.")]
         public bool GlyphofFade { get { return _glyphData[3]; } set { _glyphData[3] = value; } }
-        [GlyphData(4, "Glyph of Fear Ward", true, @"Reduces the cooldown and duration of Fear Ward by 60 sec.")]
+        [GlyphData(4, "Glyph of Fear Ward", true, @"Reduces cooldown and duration of Fear Ward by 60 sec.")]
         public bool GlyphofFearWard { get { return _glyphData[4]; } set { _glyphData[4] = value; } }
-        [GlyphData(5, "Glyph of Flash Heal", true, @"Reduces the mana cost of Flash Heal by 10%.")]
+        [GlyphData(5, "Glyph of Flash Heal", true, @"Reduces the mana cost of your Flash Heal by 10%.")]
         public bool GlyphofFlashHeal { get { return _glyphData[5]; } set { _glyphData[5] = value; } }
         [GlyphData(6, "Glyph of Guardian Spirit", true, @"If your Guardian Spirit lasts its entire duration without being triggered, the cooldown is reset to 1 min.")]
         public bool GlyphofGuardianSpirit { get { return _glyphData[6]; } set { _glyphData[6] = value; } }
@@ -521,11 +615,11 @@ namespace Rawr
         public bool GlyphofHymnofHope { get { return _glyphData[8]; } set { _glyphData[8] = value; } }
         [GlyphData(9, "Glyph of Inner Fire", true, @"Increases the armor from your Inner Fire spell by 50%.")]
         public bool GlyphofInnerFire { get { return _glyphData[9]; } set { _glyphData[9] = value; } }
-        [GlyphData(10, "Glyph of Lightwell", true, @"Increases the amount healed by your Lightwell by 20%.")]
+        [GlyphData(10, "Glyph of Lightwell", true, @"Increases the amount healed by your Lightwell by 20%")]
         public bool GlyphofLightwell { get { return _glyphData[10]; } set { _glyphData[10] = value; } }
-        [GlyphData(11, "Glyph of Mass Dispel", true, @"Reduces the mana cost of Mass Dispel by 30%.")]
+        [GlyphData(11, "Glyph of Mass Dispel", true, @"Reduces the mana cost of Mass Dispel by 35%.")]
         public bool GlyphofMassDispel { get { return _glyphData[11]; } set { _glyphData[11] = value; } }
-        [GlyphData(12, "Glyph of Mind Control", true, @"Reduces the chance targets will resist or break Mind Control spell by an additional 17%.")]
+        [GlyphData(12, "Glyph of Mind Control", true, @"Reduces the chance targets will resist or break your Mind Control spell by an additional 17%.")]
         public bool GlyphofMindControl { get { return _glyphData[12]; } set { _glyphData[12] = value; } }
         [GlyphData(13, "Glyph of Mind Flay", true, @"Increases the damage done by your Mind Flay spell by 10% when your target is afflicted with Shadow Word: Pain.")]
         public bool GlyphofMindFlay { get { return _glyphData[13]; } set { _glyphData[13] = value; } }
@@ -535,17 +629,17 @@ namespace Rawr
         public bool GlyphofPainSuppression { get { return _glyphData[15]; } set { _glyphData[15] = value; } }
         [GlyphData(16, "Glyph of Penance", true, @"Reduces the cooldown of Penance by 2 sec.")]
         public bool GlyphofPenance { get { return _glyphData[16]; } set { _glyphData[16] = value; } }
-        [GlyphData(17, "Glyph of Power Word: Shield", true, @"Your Power Word: Shield also heals the target for 20% of absorption amount.")]
+        [GlyphData(17, "Glyph of Power Word: Shield", true, @"Your Power Word: Shield also heals the target for 20% of the absorption amount.")]
         public bool GlyphofPowerWordShield { get { return _glyphData[17]; } set { _glyphData[17] = value; } }
         [GlyphData(18, "Glyph of Prayer of Healing", true, @"Your Prayer of Healing spell also heals an additional 20% of its initial heal over 6 sec.")]
         public bool GlyphofPrayerofHealing { get { return _glyphData[18]; } set { _glyphData[18] = value; } }
-        [GlyphData(19, "Glyph of Psychic Scream", true, @"Increases the duration of your Pscychic Scream by 2 sec. and increases its cooldown by 8 sec.")]
+        [GlyphData(19, "Glyph of Psychic Scream", true, @"Increases the duration of your Psychic Scream by 2 sec. and increases its cooldown by 8 sec.")]
         public bool GlyphofPsychicScream { get { return _glyphData[19]; } set { _glyphData[19] = value; } }
         [GlyphData(20, "Glyph of Renew", true, @"Reduces the duration of your Renew by 3 sec. but increases the amount healed each tick by 25%.")]
         public bool GlyphofRenew { get { return _glyphData[20]; } set { _glyphData[20] = value; } }
-        [GlyphData(21, "Glyph of Scourge Imprisonment", true, @"Reduces the cast time of your Shackle Undead by 0.5 sec.")]
+        [GlyphData(21, "Glyph of Scourge Imprisonment", true, @"Reduces the cast time of your Shackle Undead by 1.0 sec.")]
         public bool GlyphofScourgeImprisonment { get { return _glyphData[21]; } set { _glyphData[21] = value; } }
-        [GlyphData(22, "Glyph of Shadow", true, @"While in Shadowform, your spell critical strikes increase your spell power by 30% of your Spirit for 10 sec.")]
+        [GlyphData(22, "Glyph of Shadow", true, @"While in Shadowform, your non-periodic spell critical strikes increase your spell power by 30% of your Spirit for 10 sec.")]
         public bool GlyphofShadow { get { return _glyphData[22]; } set { _glyphData[22] = value; } }
         [GlyphData(23, "Glyph of Shadow Word: Death", true, @"Targets below 35% health take an additional 10% damage from your Shadow Word: Death spell.")]
         public bool GlyphofShadowWordDeath { get { return _glyphData[23]; } set { _glyphData[23] = value; } }
@@ -559,7 +653,7 @@ namespace Rawr
         // Minor
         [GlyphData(27, "Glyph of Fading", false, @"Reduces the mana cost of your Fade spell by 30%.")]
         public bool GlyphofFading { get { return _glyphData[27]; } set { _glyphData[27] = value; } }
-        [GlyphData(28, "Glyph of Fortitude", false, @"Reduces the mana cost of your Power Word: Fortitude and Prayer of Fortitude by 50%.")]
+        [GlyphData(28, "Glyph of Fortitude", false, @"Reduces the mana cost of your Power Word: Fortitude and Prayer of Fortitude spells by 50%.")]
         public bool GlyphofFortitude { get { return _glyphData[28]; } set { _glyphData[28] = value; } }
         [GlyphData(29, "Glyph of Levitate", false, @"Your Levitate spell no longer requires a reagent.")]
         public bool GlyphofLevitate { get { return _glyphData[29]; } set { _glyphData[29] = value; } }
@@ -571,6 +665,8 @@ namespace Rawr
         public bool GlyphofShadowfiend { get { return _glyphData[32]; } set { _glyphData[32] = value; } }
 
 
+        [GlyphData(33, "Glyph of Quick Pain", true, @"Your haste now reduces the time between periodic damage ticks of your Shadow Word: Pain spell.")]   // Rebuffed 0.3.23: client glyph 916 (spell 9250847)
+        public bool GlyphofQuickPain { get { return _glyphData[33]; } set { _glyphData[33] = value; } }
     }
 
     public partial class DeathKnightTalents
@@ -582,7 +678,7 @@ namespace Rawr
         public bool GlyphofAntiMagicShell { get { return _glyphData[0]; } set { _glyphData[0] = value; } }
         [GlyphData(1, "Glyph of Blood Strike", true, @"Your Blood Strike causes an additional 20% damage to snared targets.")]
         public bool GlyphofBloodStrike { get { return _glyphData[1]; } set { _glyphData[1] = value; } }
-        [GlyphData(2, "Glyph of Bone Shield", true, @"Adds 2 additional charges to your Bone Shield.")]
+        [GlyphData(2, "Glyph of Bone Shield", true, @"Adds 1 additional charge to your Bone Shield.")]
         public bool GlyphofBoneShield { get { return _glyphData[2]; } set { _glyphData[2] = value; } }
         [GlyphData(3, "Glyph of Chains of Ice", true, @"Your Chains of Ice also causes 144 to 156 Frost damage, increased by your attack power.")]
         public bool GlyphofChainsofIce { get { return _glyphData[3]; } set { _glyphData[3] = value; } }
@@ -590,15 +686,15 @@ namespace Rawr
         public bool GlyphofDancingRuneWeapon { get { return _glyphData[4]; } set { _glyphData[4] = value; } }
         [GlyphData(5, "Glyph of Dark Command", true, @"Increases the chance for your Dark Command ability to work successfully by 8%.")]
         public bool GlyphofDarkCommand { get { return _glyphData[5]; } set { _glyphData[5] = value; } }
-        [GlyphData(6, "Glyph of Dark Death", true, @"Increases the damage done by Death Coil by 15%.")]
+        [GlyphData(6, "Glyph of Dark Death", true, @"Increases the damage or healing done by Death Coil by 15%.")]
         public bool GlyphofDarkDeath { get { return _glyphData[6]; } set { _glyphData[6] = value; } }
         [GlyphData(7, "Glyph of Death and Decay", true, @"Damage of your Death and Decay spell increased by 20%.")]
         public bool GlyphofDeathandDecay { get { return _glyphData[7]; } set { _glyphData[7] = value; } }
         [GlyphData(8, "Glyph of Death Grip", true, @"When you deal a killing blow that grants honor or experience, the cooldown of your Death Grip is refreshed.")]
         public bool GlyphofDeathGrip { get { return _glyphData[8]; } set { _glyphData[8] = value; } }
-        [GlyphData(9, "Glyph of Death Strike", true, @"Increases your Death Strike's damage by 2% for every 2 runic power you currently have (up to a maximum of 25%).  The runic power is not consumed by this effect.")]
+        [GlyphData(9, "Glyph of Death Strike", true, @"Increases your Death Strike's damage by 1% for every 1 runic power you currently have (up to a maximum of 25%).  The runic power is not consumed by this effect.")]
         public bool GlyphofDeathStrike { get { return _glyphData[9]; } set { _glyphData[9] = value; } }
-        [GlyphData(10, "Glyph of Disease", true, @"Your Pestilence ability now refreshes disease durations on your primary target back to their maximum duration.")]
+        [GlyphData(10, "Glyph of Disease", true, @"Your Pestilence ability now refreshes disease durations and secondary effects of diseases on your primary target back to their maximum duration.")]
         public bool GlyphofDisease { get { return _glyphData[10]; } set { _glyphData[10] = value; } }
         [GlyphData(11, "Glyph of Frost Strike", true, @"Reduces the cost of your Frost Strike by 8 Runic Power.")]
         public bool GlyphofFrostStrike { get { return _glyphData[11]; } set { _glyphData[11] = value; } }
@@ -608,11 +704,11 @@ namespace Rawr
         public bool GlyphofHowlingBlast { get { return _glyphData[13]; } set { _glyphData[13] = value; } }
         [GlyphData(14, "Glyph of Hungering Cold", true, @"Reduces the cost of Hungering Cold by 40 runic power.")]
         public bool GlyphofHungeringCold { get { return _glyphData[14]; } set { _glyphData[14] = value; } }
-        [GlyphData(15, "Glyph of Icebound Fortitude", true, @"Your Icebound Fortitude now always grants at least 30% damage reduction, regardless of your defense skill.")]
+        [GlyphData(15, "Glyph of Icebound Fortitude", true, @"Your Icebound Fortitude now always grants at least 40% damage reduction, regardless of your defense skill.")]
         public bool GlyphofIceboundFortitude { get { return _glyphData[15]; } set { _glyphData[15] = value; } }
         [GlyphData(16, "Glyph of Icy Touch", true, @"Your Frost Fever disease deals 20% additional damage.")]
         public bool GlyphofIcyTouch { get { return _glyphData[16]; } set { _glyphData[16] = value; } }
-        [GlyphData(17, "Glyph of Obliterate", true, @"Increases the damage of your Obliterate ability by 20%.")]
+        [GlyphData(17, "Glyph of Obliterate", true, @"Increases the damage of your Obliterate ability by 25%.")]
         public bool GlyphofObliterate { get { return _glyphData[17]; } set { _glyphData[17] = value; } }
         [GlyphData(18, "Glyph of Plague Strike", true, @"Your Plague Strike does 20% additional damage.")]
         public bool GlyphofPlagueStrike { get { return _glyphData[18]; } set { _glyphData[18] = value; } }
@@ -626,16 +722,16 @@ namespace Rawr
         public bool GlyphofStrangulate { get { return _glyphData[22]; } set { _glyphData[22] = value; } }
         [GlyphData(23, "Glyph of the Ghoul", true, @"Your Ghoul receives an additional 40% of your Strength and 40% of your Stamina.")]
         public bool GlyphoftheGhoul { get { return _glyphData[23]; } set { _glyphData[23] = value; } }
-        [GlyphData(24, "Glyph of Unbreakable Armor", true, @"Increases the armor granted by Unbreakable Armor by 20%.")]
+        [GlyphData(24, "Glyph of Unbreakable Armor", true, @"Increases the total armor granted by Unbreakable Armor to 30%.")]
         public bool GlyphofUnbreakableArmor { get { return _glyphData[24]; } set { _glyphData[24] = value; } }
         [GlyphData(25, "Glyph of Unholy Blight", true, @"Increases the damage done by Unholy Blight by 40%.")]
         public bool GlyphofUnholyBlight { get { return _glyphData[25]; } set { _glyphData[25] = value; } }
-        [GlyphData(26, "Glyph of Vampiric Blood", true, @"Increases  the duration of your Vampiric Blood by 10 sec.")]
+        [GlyphData(26, "Glyph of Vampiric Blood", true, @"Increases  the duration of your Vampiric Blood by 5 sec.")]
         public bool GlyphofVampiricBlood { get { return _glyphData[26]; } set { _glyphData[26] = value; } }
         //Minor
         [GlyphData(27, "Glyph of Blood Tap", false, @"Your Blood Tap no longer causes damage to you.")]
         public bool GlyphofBloodTap { get { return _glyphData[27]; } set { _glyphData[27] = value; } }
-        [GlyphData(28, "Glyph of Corpse Explosion", false, @"Any target killed by your Corpse Explosion ability will also explode.  Only affects targets within range of your Corpse Explosion ability, and cannot happen more than once every 6 seconds.")]
+        [GlyphData(28, "Glyph of Corpse Explosion", false, @"Increases the radius of effect on Corpse Explosion by 5 yards.")]
         public bool GlyphofCorpseExplosion { get { return _glyphData[28]; } set { _glyphData[28] = value; } }
         [GlyphData(29, "Glyph of Death's Embrace", false, @"Your Death Coil refunds 20 runic power when used to heal.")]
         public bool GlyphofDeathsEmbrace { get { return _glyphData[29]; } set { _glyphData[29] = value; } }
@@ -649,7 +745,7 @@ namespace Rawr
 
     public partial class WarlockTalents
     {
-        private bool[] _glyphData = new bool[17];
+        private bool[] _glyphData = new bool[35];   // Rebuffed 0.3.23: + 18 client glyphs
         public override bool[] GlyphData { get { return _glyphData; } }
   
         [GlyphData(0, "Glyph of Chaos Bolt", true, @"Reduces the cooldown on Chaos Bolt by 2 sec.")]
@@ -663,19 +759,19 @@ namespace Rawr
         public bool GlyphCorruption { get { return _glyphData[2]; } set { _glyphData[2] = value; } }
         [GlyphData(3, "Glyph of Curse of Agony", true, @"Increases the duration of your Curse of Agony by 4 sec.")]
         public bool GlyphCoA { get { return _glyphData[3]; } set { _glyphData[3] = value; } }
-        [GlyphData(4, "Glyph of Death Coil", true, @" Increases the duration of your Death Coil by 0.5 sec.")]
+        [GlyphData(4, "Glyph of Death Coil", true, @"Increases the duration of your Death Coil by 0.5 sec.")]
         public bool GlyphDeathCoil { get { return _glyphData[4]; } set { _glyphData[4] = value; } }
-        [GlyphData(5, "Glyph of Felguard", true, @"Increases the Felguard\'s total attack power by 20%.")]
+        [GlyphData(5, "Glyph of Felguard", true, @"Increases the Felguard's total attack power by 20%.")]
         public bool GlyphFelguard { get { return _glyphData[5]; } set { _glyphData[5] = value; } }
         [GlyphData(6, "Glyph of Haunt", true, @"The bonus damage granted by your Haunt spell is increased by an additional 3%.")]
         public bool GlyphHaunt { get { return _glyphData[6]; } set { _glyphData[6] = value; } }
         [GlyphData(7, "Glyph of Immolate", true, @"Increases the periodic damage of your Immolate by 10%.")]
         public bool GlyphImmolate { get { return _glyphData[7]; } set { _glyphData[7] = value; } }
-        [GlyphData(8, "Glyph of Imp", true, @"Increases the damage done by your Imp\'s Firebolt spell by 20%.")]
+        [GlyphData(8, "Glyph of Imp", true, @"Increases the damage done by your Imp's Firebolt spell by 20%.")]
         public bool GlyphImp { get { return _glyphData[8]; } set { _glyphData[8] = value; } }
         [GlyphData(9, "Glyph of Incinerate", true, @"Increases the damage done by Incinerate by 5%.")]
         public bool GlyphIncinerate { get { return _glyphData[9]; } set { _glyphData[9] = value; } }
-        [GlyphData(10, "Glyph of Life Tap", true, @"When you use Life Tap, you gain 20% of your Spirit as spell power for 40 sec.")]
+        [GlyphData(10, "Glyph of Life Tap", true, @"When you use Life Tap or Dark Pact, you gain 20% of your Spirit as spell power for 40 sec.")]
         public bool GlyphLifeTap { get { return _glyphData[10]; } set { _glyphData[10] = value; } }
         [GlyphData(11, "Glyph of Metamorphosis", true, @"Increases the duration of your Metamorphosis by 6 sec.")]
         public bool GlyphMetamorphosis { get { return _glyphData[11]; } set { _glyphData[11] = value; } }
@@ -690,11 +786,47 @@ namespace Rawr
         public bool GlyphShadowburn { get { return _glyphData[15]; } set { _glyphData[15] = value; } }
         [GlyphData(16, "Glyph of Unstable Affliction", true, @"Decreases the casting time of your Unstable Affliction by 0.2 sec.")]
         public bool GlyphUA { get { return _glyphData[16]; } set { _glyphData[16] = value; } }
+        [GlyphData(17, "Glyph of Fear", true, @"Increases the damage your Fear target can take before the Fear effect is removed by 20%.")]   // Rebuffed 0.3.23: client glyph 277 (spell 56244)
+        public bool GlyphFear { get { return _glyphData[17]; } set { _glyphData[17] = value; } }
+        [GlyphData(18, "Glyph of Felhunter", true, @"When your Felhunter uses Devour Magic, you will also be healed for that amount.")]   // Rebuffed 0.3.23: client glyph 279 (spell 56249)
+        public bool GlyphFelhunter { get { return _glyphData[18]; } set { _glyphData[18] = value; } }
+        [GlyphData(19, "Glyph of Health Funnel", true, @"Reduces the pushback suffered from damaging attacks while channeling your Health Funnel spell by 100%.")]   // Rebuffed 0.3.23: client glyph 280 (spell 56238)
+        public bool GlyphHealthFunnel { get { return _glyphData[19]; } set { _glyphData[19] = value; } }
+        [GlyphData(20, "Glyph of Healthstone", true, @"You receive 30% more healing from using a healthstone.")]   // Rebuffed 0.3.23: client glyph 281 (spell 56224)
+        public bool GlyphHealthstone { get { return _glyphData[20]; } set { _glyphData[20] = value; } }
+        [GlyphData(21, "Glyph of Howl of Terror", true, @"Reduces the cooldown on your Howl of Terror spell by 8 sec.")]   // Rebuffed 0.3.23: client glyph 282 (spell 56217)
+        public bool GlyphHowlOfTerror { get { return _glyphData[21]; } set { _glyphData[21] = value; } }
+        [GlyphData(22, "Glyph of Siphon Life", true, @"Increases the healing you receive from your Siphon Life talent by 25%.")]   // Rebuffed 0.3.23: client glyph 288 (spell 56216)
+        public bool GlyphSiphonLife { get { return _glyphData[22]; } set { _glyphData[22] = value; } }
+        [GlyphData(23, "Glyph of Soulstone", true, @"Increases the amount of health you gain from resurrecting via a Soulstone by 300%.")]   // Rebuffed 0.3.23: client glyph 289 (spell 56231)
+        public bool GlyphSoulstone { get { return _glyphData[23]; } set { _glyphData[23] = value; } }
+        [GlyphData(24, "Glyph of Succubus", true, @"Your Succubus's Seduction ability also removes all damage over time effects from the target.")]   // Rebuffed 0.3.23: client glyph 290 (spell 56250)
+        public bool GlyphSuccubus { get { return _glyphData[24]; } set { _glyphData[24] = value; } }
+        [GlyphData(25, "Glyph of Voidwalker", true, @"Increases your Voidwalker's total Stamina by 20%.")]   // Rebuffed 0.3.23: client glyph 292 (spell 56247)
+        public bool GlyphVoidwalker { get { return _glyphData[25]; } set { _glyphData[25] = value; } }
+        [GlyphData(26, "Glyph of Unending Breath", false, @"Increases the swim speed of targets affected by your Unending Breath spell by 20%.")]   // Rebuffed 0.3.23: client glyph 477 (spell 58079)
+        public bool GlyphUnendingBreath { get { return _glyphData[26]; } set { _glyphData[26] = value; } }
+        [GlyphData(27, "Glyph of Drain Soul", false, @"Your Drain Soul ability occasionally creates an additional soul shard.")]   // Rebuffed 0.3.23: client glyph 478 (spell 58070)
+        public bool GlyphDrainSoul { get { return _glyphData[27]; } set { _glyphData[27] = value; } }
+        [GlyphData(28, "Glyph of Kilrogg", false, @"Increases the movement speed of your Eye of Kilrogg by 50% and allows it to fly in areas where flying mounts are enabled.")]   // Rebuffed 0.3.23: client glyph 479 (spell 58081)
+        public bool GlyphKilrogg { get { return _glyphData[28]; } set { _glyphData[28] = value; } }
+        [GlyphData(29, "Glyph of Curse of Exhausion", false, @"Increases the range of your Curse of Exhaustion spell by 5 yards.")]   // Rebuffed 0.3.23: client glyph 480 (spell 58080)
+        public bool GlyphCurseOfExhausion { get { return _glyphData[29]; } set { _glyphData[29] = value; } }
+        [GlyphData(30, "Glyph of Enslave Demon", false, @"Reduces the cast time of your Enslave Demon spell by 50%.")]   // Rebuffed 0.3.23: client glyph 481 (spell 58107)
+        public bool GlyphEnslaveDemon { get { return _glyphData[30]; } set { _glyphData[30] = value; } }
+        [GlyphData(31, "Glyph of Souls", false, @"Reduces the mana cost of your Ritual of Souls spell by 70%.")]   // Rebuffed 0.3.23: client glyph 482 (spell 58094)
+        public bool GlyphSouls { get { return _glyphData[31]; } set { _glyphData[31] = value; } }
+        [GlyphData(32, "Glyph of Demonic Circle", true, @"Reduces the cooldown on Demonic Circle by 4 sec.")]   // Rebuffed 0.3.23: client glyph 758 (spell 63309)
+        public bool GlyphDemonicCircle { get { return _glyphData[32]; } set { _glyphData[32] = value; } }
+        [GlyphData(33, "Glyph of Shadowflame", true, @"Your Shadowflame also applies a 70% movement speed slow on its victims.")]   // Rebuffed 0.3.23: client glyph 759 (spell 63310)
+        public bool GlyphShadowflame { get { return _glyphData[33]; } set { _glyphData[33] = value; } }
+        [GlyphData(34, "Glyph of Soul Link", true, @"Increases the percentage of damage shared via your Soul Link by an additional 5%.")]   // Rebuffed 0.3.23: client glyph 761 (spell 63312)
+        public bool GlyphSoulLink { get { return _glyphData[34]; } set { _glyphData[34] = value; } }
     }
 
     public partial class RogueTalents
     {
-        private bool[] _glyphData = new bool[34];
+        private bool[] _glyphData = new bool[35];   // Rebuffed 0.3.23: + 1 client glyphs
         public override bool[] GlyphData { get { return _glyphData; } }
 
         [GlyphData(0, "Glyph of Backstab", true, @"Your Backstab increases the duration of your Rupture effect on the target by 2 sec, up to a maximum of 6 additional sec.")]
@@ -705,21 +837,21 @@ namespace Rawr
         public bool GlyphOfMutilate { get { return _glyphData[2]; } set { _glyphData[2] = value; } }
         [GlyphData(3, "Glyph of Hunger For Blood", true, @"Increases the bonus damage from Hunger For Blood by 3%.")]
         public bool GlyphOfHungerforBlood { get { return _glyphData[3]; } set { _glyphData[3] = value; } }
-        [GlyphData(4, "Glyph of Killing Spree", true, @"Reduces the cooldown on Killing Spree by 45 seconds.")]
+        [GlyphData(4, "Glyph of Killing Spree", true, @"Reduces the cooldown on Killing Spree by 45 sec.")]
         public bool GlyphOfKillingSpree { get { return _glyphData[4]; } set { _glyphData[4] = value; } }
         [GlyphData(5, "Glyph of Vigor", true, @"Vigor grants an additional 10 maximum energy.")]
         public bool GlyphOfVigor { get { return _glyphData[5]; } set { _glyphData[5] = value; } }
         [GlyphData(6, "Glyph of Fan of Knives", true, @"Increases the damage done by Fan of Knives by 20%.")]
         public bool GlyphOfFanOfKnives { get { return _glyphData[6]; } set { _glyphData[6] = value; } }
-        [GlyphData(7, "Glyph of Expose Armor", true, @"Increases the duration of Expose Armor by 10 sec.")]
+        [GlyphData(7, "Glyph of Expose Armor", true, @"Increases the duration of Expose Armor by 12 sec.")]
         public bool GlyphOfExposeArmor { get { return _glyphData[7]; } set { _glyphData[7] = value; } }
         [GlyphData(8, "Glyph of Sinister Strike", true, @"Your Sinister Strike critical strikes have a 50% chance to add an additional combo point.")]
         public bool GlyphOfSinisterStrike { get { return _glyphData[8]; } set { _glyphData[8] = value; } }
         [GlyphData(9, "Glyph of Slice and Dice", true, @"Increases the duration of Slice and Dice by 3 sec.")]
         public bool GlyphOfSliceandDice { get { return _glyphData[9]; } set { _glyphData[9] = value; } }
-        [GlyphData(10, "Glyph of Feint", true, @"Reduces the energy cost of Feint by 10.")]
+        [GlyphData(10, "Glyph of Feint", true, @"Reduces the energy cost of Feint by 20.")]
         public bool GlyphOfFeint { get { return _glyphData[10]; } set { _glyphData[10] = value; } }
-        [GlyphData(11, "Glyph of Ghostly Strike", true, @"Increases the damage dealt by Ghostly Strike by 40% and the duration of its effect by 4 sec., but increases its cooldown by 10 sec.")]
+        [GlyphData(11, "Glyph of Ghostly Strike", true, @"Increases the damage dealt by Ghostly Strike by 40% and the duration of its effect by 4 sec, but increases its cooldown by 10 sec.")]
         public bool GlyphOfGhostlyStrike { get { return _glyphData[11]; } set { _glyphData[11] = value; } }
         [GlyphData(12, "Glyph of Rupture", true, @"Increases the duration of Rupture by 4 sec.")]
         public bool GlyphOfRupture { get { return _glyphData[12]; } set { _glyphData[12] = value; } }
@@ -729,9 +861,9 @@ namespace Rawr
         public bool GlyphOfAdrenalineRush { get { return _glyphData[14]; } set { _glyphData[14] = value; } }
         [GlyphData(15, "Glyph of Evasion", true, @"Increases the duration of Evasion by 5 sec.")]
         public bool GlyphOfEvasion { get { return _glyphData[15]; } set{ _glyphData[15] = value;} }
-        [GlyphData(16, "Glyph of Garrote",true, @"Increases periodic damage dealt by Garrote by 45%, but decreases the duration by 3 sec.")]
+        [GlyphData(16, "Glyph of Garrote",true, @"Reduces the duration of your Garrote ability by 3 sec and increases the total damage it deals by 20%.")]
         public bool GlyphOfGarrote { get { return _glyphData[16]; } set { _glyphData[16] = value; } }
-        [GlyphData(17, "Glyph of Gouge",true, @"Reduces the energy cost of Gouge by 10.")]
+        [GlyphData(17, "Glyph of Gouge",true, @"Reduces the energy cost of Gouge by 15.")]
         public bool GlyphOfGouge { get { return _glyphData[17]; } set{ _glyphData[17] = value;} }
         [GlyphData(18, "Glyph of Sap", true, @"Increases the duration of Sap by 20 sec.")]
         public bool GlyphOfSap { get { return _glyphData[18]; } set{ _glyphData[18] = value;} }
@@ -739,15 +871,15 @@ namespace Rawr
         public bool GlyphOfSprint { get { return _glyphData[19]; } set{ _glyphData[19] = value;} }
         [GlyphData(20, "Glyph of Ambush", true, @"Increases the range on Ambush by 5 yards.")]
         public bool GlyphOfAmbush { get { return _glyphData[20]; } set{ _glyphData[20] = value;} }
-        [GlyphData(21, "Glyph of Crippling Poison", true, @"Increases the chance to trigger Crippling Poison by 20%.")]
+        [GlyphData(21, "Glyph of Crippling Poison", true, @"Increases the chance to inflict your target with Crippling Poison by an additional 20%.")]
         public bool GlyphOfCripplingPoison { get { return _glyphData[21]; } set{ _glyphData[21] = value;} }
         [GlyphData(22, "Glyph of Hemorrhage", true, @"Increases the damage bonus against targets afflicted by Hemorrhage by 40%.")]
         public bool GlyphOfHemorrhage { get { return _glyphData[22]; } set{ _glyphData[22] = value;} }
-        [GlyphData(23, "Glyph of Preparation", true, @"Your Preparation ability also instantly resets the cooldown of Blade Furry, Dismantle, and Kick.")]
+        [GlyphData(23, "Glyph of Preparation", true, @"Your Preparation ability also instantly resets the cooldown of Blade Flurry, Dismantle, and Kick.")]
         public bool GlyphOfPreparation { get { return _glyphData[23]; } set{ _glyphData[23] = value;} }
-        [GlyphData(24, "Glyph of Shadow Dance", true, @"Increases the duration of Shadow Dance by 4 sec.")]
+        [GlyphData(24, "Glyph of Shadow Dance", true, @"Increases the duration of Shadow Dance by 2 sec.")]
         public bool GlyphOfShadowDance { get { return _glyphData[24]; } set{ _glyphData[24] = value;} }
-        [GlyphData(25, "Glyph of Deadly Throw", true, @"Increases the slowing effect on Deadly Throw by 10%.")]
+        [GlyphData(25, "Glyph of Deadly Throw", true, @"Increases the slowing effect on Deadly Throw by 20%.")]
         public bool GlyphOfDeadlyThrow { get { return _glyphData[25]; } set{ _glyphData[25] = value;} }
         [GlyphData(26, "Glyph of Cloak of Shadows", true, @"While Cloak of Shadows is active, you take 40% less physical damage.")]
         public bool GlyphOfCloakOfShadows { get { return _glyphData[26]; } set{ _glyphData[26] = value;} }
@@ -755,7 +887,7 @@ namespace Rawr
         public bool GlyphOfTricksOfTheTrade { get { return _glyphData[27]; } set{ _glyphData[27] = value;} }
 
         //minor glyphs
-        [GlyphData(28, "Glyph of Blurred Speed", false, @"You gain the ability to walk on water while your Sprint ability is active.")]
+        [GlyphData(28, "Glyph of Blurred Speed", false, @"Enables you to walk on water while your Sprint ability is active.")]
         public bool GlyphOfBlurredSpeed { get { return _glyphData[28]; } set{ _glyphData[28] = value;} }
         [GlyphData(29, "Glyph of Pick Pocket", false, @"Increases the range of your Pick Pocket ability by 5 yards.")]
         public bool GlyphOfPickPocket { get { return _glyphData[29]; } set{ _glyphData[29] = value;} }
@@ -767,6 +899,8 @@ namespace Rawr
         public bool GlyphOfVanish { get { return _glyphData[32]; } set{ _glyphData[32] = value;} }
         [GlyphData(33, "Glyph of Safe Fall", false, @"Increases the distance your Safe Fall ability allows you to fall without taking damage.")]
         public bool GlyphOfSafeFall { get { return _glyphData[33]; } set{ _glyphData[33] = value;}}
+        [GlyphData(34, "Glyph of Envenom", true, @"Your Envenom ability no longer consumes Deadly Poison from your target.")]   // Rebuffed 0.3.23: client glyph 791 (spell 64199)
+        public bool GlyphOfEnvenom { get { return _glyphData[34]; } set { _glyphData[34] = value; } }
     }
 
     public partial class HunterTalents
@@ -835,8 +969,8 @@ namespace Rawr
         /// <summary>Increases the duration of your Serpent Sting by 6 sec.</summary>
         [GlyphData(19, "Glyph of Serpent Sting", true, @"Increases the duration of your Serpent Sting by 6 sec.")]
         public bool GlyphOfSerpentSting { get { return _glyphData[19]; } set { _glyphData[19] = value; } }
-        /// <summary>Snakes generated by your Snake Trap take 90% reduced damge from area of effect spells.</summary>
-        [GlyphData(20, "Glyph of Snake Trap", true, @"Snakes generated by your Snake Trap take 90% reduced damge from area of effect spells.")]
+        /// <summary>Snakes from your Snake Trap take 90% reduced damage from area of effect spells.</summary>
+        [GlyphData(20, "Glyph of Snake Trap", true, @"Snakes from your Snake Trap take 90% reduced damage from area of effect spells.")]
         public bool GlyphOfSnakeTrap { get { return _glyphData[20]; } set { _glyphData[20] = value; } }
         /// <summary>Increases the damage dealt by Steady Shot by 10% when your target is afflicted with Serpent Sting.</summary>
         [GlyphData(21, "Glyph of Steady Shot", true, @"Increases the damage dealt by Steady Shot by 10% when your target is afflicted with Serpent Sting.")]

@@ -142,7 +142,7 @@ namespace Rawr.DPSWarr {
             int Iterator = 0;
             #region >20%
             // Run the loop for >20%
-            float MSBaseCd = 6f - Talents.ImprovedMortalStrike / 3f;
+            float MSBaseCd = MS.ability.Cd;   // Rebuffed 0.3.24: the ability's cooldown (6 s; 0.3.23 had a second 6f here)
             float MS_WeightedValue = MS.ability.DamageOnUse + DW.TickSize * MS.ability.MHAtkTable.Crit,
                   SD_WeightedValue = SD.ability.DamageOnUse + DW.TickSize * SD.ability.MHAtkTable.Crit,
                   SL_WeightedValue = SL.ability.DamageOnUse + DW.TickSize * SL.ability.MHAtkTable.Crit;

@@ -1171,7 +1171,7 @@ namespace Rawr.HealPriest
         {
             MinHeal = MaxHeal = 0;
             ManaCost = (int)Math.Floor((ManaCost / 100f * BaseMana - stats.SpellsManaReduction)
-                * (character.PriestTalents.GlyphofMassDispel ? 0.7f : 1.0f) );
+                * (character.PriestTalents.GlyphofMassDispel ? 0.65f : 1.0f) );   // Rebuffed 0.3.23: -35 % (client 55691)
             CritChance = 0.0f;
             CritCoef = 1.0f;
         }

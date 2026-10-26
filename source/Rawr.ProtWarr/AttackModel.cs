@@ -7,6 +7,7 @@ namespace Rawr.ProtWarr
 {
     public class AttackModel
     {
+        public const float RebuffedShieldSpecializationRage = 7f;   // Rebuffed 0.3.24: client 23602 (stock 5)
         private Character Character;
         private CalculationOptionsProtWarr Options;
         private Stats Stats;
@@ -225,7 +226,8 @@ namespace Rawr.ProtWarr
             modelDamage += deepWounds.Damage * modelCrits;
 
             // Misc. Power Gains
-            modelThreat += DefendTable.DodgeParryBlock * (modelLength / ParryModel.BossAttackSpeed) * 25.0f * 
+            // Rebuffed 0.3.23: Shield Specialization generates 7 rage (client 12298-12727), 5 threat per rage
+            modelThreat += DefendTable.DodgeParryBlock * (modelLength / ParryModel.BossAttackSpeed) * (5.0f * RebuffedShieldSpecializationRage) * 
                 (Talents.ShieldSpecialization * 0.2f);
             modelThreat += DefendTable.DodgeParryBlock * (modelLength / ParryModel.BossAttackSpeed) * 1.0f * 
                 Lookup.StanceThreatMultipler(Character, Stats) * (Talents.ImprovedDefensiveStance * 0.5f);

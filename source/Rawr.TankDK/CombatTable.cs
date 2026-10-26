@@ -6,6 +6,7 @@ namespace Rawr.TankDK
 {
     class CombatTable
     {
+        public const float RebuffedObliterateGlyph = 1.25f;   // Rebuffed 0.3.23: Glyph of Obliterate (client 58671)
         public bool m_bDW;
         public Character character;
 //        public CharacterCalculationsTankDK calcs;
@@ -751,7 +752,7 @@ namespace Rawr.TankDK
                         (0.05f * (float)talents.Rime) +
                         stats.BonusObliterateCrit) * OblitCritDmgMult);
                     fDamObliterate *= OblitCrit;
-                    fDamObliterate *= (talents.GlyphofObliterate ? 1.2f : 1f);
+                    fDamObliterate *= (talents.GlyphofObliterate ? RebuffedObliterateGlyph : 1f);   // Rebuffed 0.3.23: client 58671
                 }
             }
             #endregion

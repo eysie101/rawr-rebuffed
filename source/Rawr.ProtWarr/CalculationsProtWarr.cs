@@ -516,8 +516,8 @@ threat and limited threat scaled by the threat scale.",
             {
                 Parry = talents.Deflection * 0.01f,
                 Dodge = talents.Anticipation * 0.01f,
-                Block = talents.ShieldSpecialization * 0.01f,
-                BonusBlockValueMultiplier = talents.ShieldMastery * 0.15f + (talents.GlyphOfBlocking ? 0.1f : 0.0f),
+                Block = (talents.ShieldSpecialization > 0 ? 0.02f + talents.ShieldSpecialization * 0.01f : 0f),   // Rebuffed 0.3.23: 3-7 % (client 12298-12727)
+                BonusBlockValueMultiplier = talents.ShieldMastery * 0.20f + (talents.GlyphOfBlocking ? 0.1f : 0.0f),   // Rebuffed 0.3.23: 20 / 40 % (client 29598 / 29599)
                 PhysicalCrit = talents.Cruelty * 0.01f +
                     ((character.MainHand != null && (character.MainHand.Type == ItemType.OneHandAxe))
                         ? talents.PoleaxeSpecialization * 0.01f : 0.0f),
@@ -532,9 +532,10 @@ threat and limited threat scaled by the threat scale.",
                         character.MainHand.Type == ItemType.Dagger ||
                         character.MainHand.Type == ItemType.FistWeapon))
                             ? talents.OneHandedWeaponSpecialization * 0.02f : 0f),
-                BonusStaminaMultiplier = talents.Vitality * 0.03f + talents.StrengthOfArms * 0.02f,
-                BonusStrengthMultiplier = talents.Vitality * 0.02f + talents.StrengthOfArms * 0.02f,
-                Expertise = talents.Vitality * 2.0f + talents.StrengthOfArms * 2.0f,
+                // Rebuffed 0.3.23: Vitality Stamina 6 / 9 / 12 %, Strength 3 / 6 / 9 %, expertise 3 / 6 / 9 (client 29140-29144)
+                BonusStaminaMultiplier = (talents.Vitality > 0 ? 0.03f + talents.Vitality * 0.03f : 0f) + talents.StrengthOfArms * 0.02f,
+                BonusStrengthMultiplier = talents.Vitality * 0.03f + talents.StrengthOfArms * 0.02f,
+                Expertise = talents.Vitality * 3.0f + talents.StrengthOfArms * 2.0f,
                 BonusShieldSlamDamage = talents.GagOrder * 0.05f,
                 DevastateCritIncrease = talents.SwordAndBoard * 0.05f,
                 BaseArmorMultiplier = talents.Toughness * 0.02f,

@@ -373,14 +373,15 @@ criteria to this <= 0 to ensure that you stay defense-soft capped.",
             new SpecialEffect(Trigger.FrostFeverHit, new Stats() { PhysicalHaste = (0.04f * 4) }, 20f, 0f),
             new SpecialEffect(Trigger.FrostFeverHit, new Stats() { PhysicalHaste = (0.04f * 5) }, 20f, 0f),
         };
+        public const uint RebuffedBoneShieldGlyphCharges = 1;   // Rebuffed 0.3.23: Glyph of Bone Shield (client 58673)
         private static readonly SpecialEffect[][] _SE_UnbreakableArmor = new SpecialEffect[][] {
             new SpecialEffect[] {
                     new SpecialEffect(Trigger.Use, new Stats() { BonusStrengthMultiplier = 0.20f, BaseArmorMultiplier = .25f + (false ? .20f : 0f), BonusArmorMultiplier = .25f + (false ? .20f : 0f) }, 20f, 60f - 0 * 10f),
-                    new SpecialEffect(Trigger.Use, new Stats() { BonusStrengthMultiplier = 0.20f, BaseArmorMultiplier = .25f + (true  ? .20f : 0f), BonusArmorMultiplier = .25f + (true  ? .20f : 0f) }, 20f, 60f - 0 * 10f),
+                    new SpecialEffect(Trigger.Use, new Stats() { BonusStrengthMultiplier = 0.20f, BaseArmorMultiplier = .25f + (true  ? .05f : 0f), BonusArmorMultiplier = .25f + (true  ? .05f : 0f) }, 20f, 60f - 0 * 10f),
             },
             new SpecialEffect[] {
                     new SpecialEffect(Trigger.Use, new Stats() { BonusStrengthMultiplier = 0.20f, BaseArmorMultiplier = .25f + (false ? .20f : 0f), BonusArmorMultiplier = .25f + (false ? .20f : 0f) }, 20f, 60f - 1 * 10f),
-                    new SpecialEffect(Trigger.Use, new Stats() { BonusStrengthMultiplier = 0.20f, BaseArmorMultiplier = .25f + (true  ? .20f : 0f), BonusArmorMultiplier = .25f + (true  ? .20f : 0f) }, 20f, 60f - 1 * 10f),
+                    new SpecialEffect(Trigger.Use, new Stats() { BonusStrengthMultiplier = 0.20f, BaseArmorMultiplier = .25f + (true  ? .05f : 0f), BonusArmorMultiplier = .25f + (true  ? .05f : 0f) }, 20f, 60f - 1 * 10f),
             },
         };
         private static readonly SpecialEffect[] _SE_Acclimation = new SpecialEffect[] {
@@ -707,7 +708,7 @@ criteria to this <= 0 to ensure that you stay defense-soft capped.",
 			if (character.DeathKnightTalents.BoneShield > 0) 
 			{
 				uint BSStacks = 3;  // The number of bones by default.
-				if (character.DeathKnightTalents.GlyphofBoneShield == true) { BSStacks += 2; }
+				if (character.DeathKnightTalents.GlyphofBoneShield == true) { BSStacks += RebuffedBoneShieldGlyphCharges; }   // Rebuffed 0.3.23: client 58673
 
 				float fBSCD = 60f;
 				if (m_bT9_4PC) fBSCD -= 10f;
@@ -1785,7 +1786,7 @@ criteria to this <= 0 to ensure that you stay defense-soft capped.",
 			{
                 // As per wowhead: GlyphofUnbreakableArmor
                 // Effect: Apply Aura: Add % Modifier (3) Value: 20
-                FullCharacterStats.AddSpecialEffect(_SE_UnbreakableArmor[character.DeathKnightTalents.GlyphofUnbreakableArmor?1:0][m_bT9_4PC ? 1 : 0]);
+                FullCharacterStats.AddSpecialEffect(_SE_UnbreakableArmor[m_bT9_4PC ? 1 : 0][character.DeathKnightTalents.GlyphofUnbreakableArmor ? 1 : 0]);   // Rebuffed 0.3.23: [cooldown row][glyph]
 			}
 
 			// Acclimation

@@ -11,6 +11,7 @@ The bag button right of Export lists only the items a character owns: equipped, 
 
 ## Changes
 
+- 0.3.25: Warrior Recklessness lasts its 3 special attacks, at most 12 seconds.
 - 0.3.24: Every glyph of the Rebuffed client, glyph and talent tooltips from the client, Whitemane warrior talent values and outdated glyph values in the models.
 - 0.3.22: Whitemane warrior Protection talents (Painkiller, Unbroken Rage, Blood and Thunder).
 - 0.3.21: 12 330 Whitemane items from the game client's item caches of 2026-10-22 and 2026-10-25.

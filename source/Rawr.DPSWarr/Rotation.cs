@@ -1087,6 +1087,12 @@ namespace Rawr.DPSWarr {
         {
             return landedAttacksPerSecond > 0f ? RebuffedSweepingStrikesAttacks / landedAttacksPerSecond : 0f;
         }
+        // Rebuffed 0.3.25: Recklessness covers the next 3 special attacks, at most 12 s (client 1719)
+        public static float RebuffedRecklessnessDuration(float landedSpecialsPerSecond)
+        {
+            return landedSpecialsPerSecond > 0f ? Math.Min(12f, 3f / landedSpecialsPerSecond) : 0f;
+        }
+        public float RebuffedLastSweepingStrikesRate, RebuffedLastRecklessnessRate;   // Rebuffed 0.3.25: the rates the last effects were built with
         private static Dictionary<float, SpecialEffect> _SE_SweepingStrikes = new Dictionary<float, SpecialEffect>();
         #endregion
         #endregion
@@ -1134,6 +1140,7 @@ namespace Rawr.DPSWarr {
             float critRate = CriticalAtksOverDur / AttemptedAtksOverDur;
             if (SW.Validated) {
                 // Rebuffed 0.3.23: Sweeping Strikes lasts 10 melee attacks on Whitemane (client 12328); 0.3.24: for 10 / rate s
+                RebuffedLastSweepingStrikesRate = landedAtksInterval;   // Rebuffed 0.3.25: the rate this effect was built with
                 float interval = (float)Math.Round(RebuffedSweepingStrikesDuration(landedAtksInterval), 3);
                 if (!_SE_SweepingStrikes.ContainsKey(interval)) {
                     _SE_SweepingStrikes.Add(interval, new SpecialEffect(Trigger.Use, new Stats() { BonusTargets = 1f, }, RebuffedSweepingStrikesDuration(landedAtksInterval), SW.Cd));
@@ -1141,9 +1148,11 @@ namespace Rawr.DPSWarr {
                 statsTotal.AddSpecialEffect(_SE_SweepingStrikes[interval]);
             }
             if (RK.Validated && CombatFactors.FuryStance) {
-                float interval = (float)Math.Round(landedAtksInterval * 3f, 3);
+                // Rebuffed 0.3.25: the next 3 special attacks, at most 12 s (client 1719)
+                RebuffedLastRecklessnessRate = GetAttackOverDuration(SwingResult.Land, Hand.Both, AttackType.Yellow) / FightDuration;
+                float interval = (float)Math.Round(RebuffedRecklessnessDuration(RebuffedLastRecklessnessRate), 3);
                 if (!_SE_Recklessness.ContainsKey(interval)) {
-                    _SE_Recklessness.Add(interval, new SpecialEffect(Trigger.Use, new Stats() { PhysicalCrit = 1f /*- critRate*/ }, landedAtksInterval * 3f, RK.Cd));
+                    _SE_Recklessness.Add(interval, new SpecialEffect(Trigger.Use, new Stats() { PhysicalCrit = 1f /*- critRate*/ }, RebuffedRecklessnessDuration(RebuffedLastRecklessnessRate), RK.Cd));
                 }
                 statsTotal.AddSpecialEffect(_SE_Recklessness[interval]);
             }

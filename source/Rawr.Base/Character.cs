@@ -39,7 +39,18 @@ namespace Rawr //O O . .
 
         public ItemInstance[] GetItems()
         {
-            return (ItemInstance[])_item.Clone();
+            ItemInstance[] items = new ItemInstance[SlotCount];   // Rebuffed 0.3.27: was a raw clone, which kept unknown ids
+            for (int i = 0; i < SlotCount; i++) items[i] = this[(CharacterSlot)i];
+            return items;
+        }
+
+        // Rebuffed 0.3.27: the id saved in a slot whose item the item data lacks; 0 when the slot is empty or known
+        public int RebuffedUnknownItemId(CharacterSlot slot)
+        {
+            int i = (int)slot;
+            if (i < 0 || i >= SlotCount) return 0;
+            ItemInstance item = _item[i];
+            return (object)item != null && item.Id > 0 && item.Item == null ? item.Id : 0;
         }
 
         public void SetItems(ItemInstance[] items)
@@ -83,7 +94,7 @@ namespace Rawr //O O . .
         #region Gem Slots
         private string GetGemmedId(CharacterSlot slot)
         {
-            ItemInstance item = this[slot];
+            ItemInstance item = _item[(int)slot];   // Rebuffed 0.3.27: raw, so a save keeps an unknown id
             if ((object)item == null) return null;
             return item.GemmedId;
         }
@@ -1906,7 +1917,8 @@ namespace Rawr //O O . .
             {
                 int i = (int)slot;
                 if (i < 0 || i >= SlotCount) return null;
-                return _item[i];
+                ItemInstance item = _item[i];
+                return (object)item != null && item.Item == null ? null : item;   // Rebuffed 0.3.27: an unknown id reads as an empty slot
             }
             set
             {

@@ -52,6 +52,14 @@ namespace Rawr
 		private int _calculationCount = 0;
 		private ComparisonCalculationBase[] _itemCalculations = null;
 		private AutoResetEvent _autoResetEvent = null;
+		// Rebuffed 0.3.27: a model exception on a thread-pool worker of the item lists ended Rawr; it is kept and rethrown
+		// on the calling thread after the wait (type and stack kept)
+		private Exception _rebuffedWorkerError;
+		private void RebuffedRethrowWorkerError()
+		{
+			Exception e = Interlocked.Exchange(ref _rebuffedWorkerError, null);
+			if (e != null) System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(e).Throw();
+		}
         public void LoadGearBySlot(CharacterSlot slot) { LoadGearBySlot(slot, ItemSlot.None); }
         public void LoadGearBySlot(CharacterSlot slot, ItemSlot gemColour)
 		{
@@ -86,6 +94,7 @@ namespace Rawr
                         }
                         //Wait for all items to be processed
                         _autoResetEvent.WaitOne();
+                        RebuffedRethrowWorkerError();   // Rebuffed 0.3.27
                         //Trace.WriteLine(DateTime.Now.Subtract(before).Ticks);
                         //Trace.WriteLine("Finished all Calculations");
                     }
@@ -116,6 +125,7 @@ namespace Rawr
                         }
                         //Wait for all items to be processed
                         _autoResetEvent.WaitOne();
+                        RebuffedRethrowWorkerError();   // Rebuffed 0.3.27
                         //Trace.WriteLine(DateTime.Now.Subtract(before).Ticks);
                     }
                 }
@@ -155,7 +165,9 @@ namespace Rawr
 		private void GetItemInstanceCalculations(object item)
 		{
 			//Trace.WriteLine("Starting Calculation for: " + item.ToString());
-			ComparisonCalculationBase result = Calculations.GetItemCalculations((ItemInstance)item, Character, _characterSlot);
+			ComparisonCalculationBase result = null;
+			try { result = Calculations.GetItemCalculations((ItemInstance)item, Character, _characterSlot); }
+			catch (Exception ex) { Interlocked.CompareExchange(ref _rebuffedWorkerError, ex, null); }   // Rebuffed 0.3.27
 			_itemCalculations[Interlocked.Increment(ref _calculationCount) - 1] = result;
 			if (_calculationCount == _itemCalculations.Length) _autoResetEvent.Set();
 			//Trace.WriteLine("Finished Calculation for: " + item.ToString());
@@ -164,7 +176,9 @@ namespace Rawr
 		private void GetItemCalculations(object item)
 		{
 			//Trace.WriteLine("Starting Calculation for: " + item.ToString());
-			ComparisonCalculationBase result = Calculations.GetItemCalculations((Item)item, Character, _characterSlot);
+			ComparisonCalculationBase result = null;
+			try { result = Calculations.GetItemCalculations((Item)item, Character, _characterSlot); }
+			catch (Exception ex) { Interlocked.CompareExchange(ref _rebuffedWorkerError, ex, null); }   // Rebuffed 0.3.27
 			_itemCalculations[Interlocked.Increment(ref _calculationCount) - 1] = result;
 			if (_calculationCount == _itemCalculations.Length) _autoResetEvent.Set();
 			//Trace.WriteLine("Finished Calculation for: " + item.ToString());

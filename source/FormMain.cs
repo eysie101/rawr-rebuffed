@@ -32,7 +32,7 @@ namespace Rawr
         private Character _character = null;
         private List<ToolStripMenuItem> _customChartMenuItems = new List<ToolStripMenuItem>();
         private Status _statusForm;
-        private string _formatWindowTitle = "Rawr v{0} - Rebuffed 0.3.26";   // Rebuffed: the fork version beside the 2.3.23 base
+        private string _formatWindowTitle = "Rawr v{0} - Rebuffed 0.3.27";   // Rebuffed: the fork version beside the 2.3.23 base
         private Color _defaultColor = Color.White;
         private System.Threading.Timer _timerCheckForUpdates;
 

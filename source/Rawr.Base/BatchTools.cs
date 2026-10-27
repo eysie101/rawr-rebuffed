@@ -695,6 +695,16 @@ namespace Rawr
             switch (currentOperation)
             {
                 case AsyncOperation.BuildUpgradeList:
+                    if (e.Cancelled || e.Error != null)   // Rebuffed 0.3.27: e.UpgradeValue rethrows a cancel or an error
+                    {
+                        currentOperation = AsyncOperation.None;
+                        UpdateStatusLabel();
+                        if (OperationCompleted != null)
+                        {
+                            OperationCompleted(this, EventArgs.Empty);
+                        }
+                        break;
+                    }
                     upgradeListEnumerator.Current.Value += e.UpgradeValue * CurrentBatchCharacter.Weight;
                     upgradeListEnumerator.Current.ValueList.Add(e.UpgradeValue);
                     if (upgradeListEnumerator.MoveNext())
@@ -1221,7 +1231,7 @@ namespace Rawr
             {
                 OperationCompleted(this, EventArgs.Empty);
             }
-            if (!e.Cancelled)
+            if (!e.Cancelled && e.Error == null)   // Rebuffed 0.3.27: e.Upgrades rethrows the error
             {
                 CustomSubpoints = null;
                 Upgrades = e.Upgrades;

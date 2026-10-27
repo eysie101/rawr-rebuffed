@@ -161,7 +161,7 @@ namespace Rawr
                     //Log.Write(ex.StackTrace);
                     //log.Error("Exception trying to retrieve an icon from the armory", ex);
                 }
-                if (!String.IsNullOrEmpty(pathToIcon))
+                if (!String.IsNullOrEmpty(pathToIcon) && File.Exists(pathToIcon))   // Rebuffed 0.3.27: a missing file is no icon
                 {
                     int retry = 0;
                     do
@@ -181,7 +181,7 @@ namespace Rawr
                             if (retry >= 3)
                             {
                                 //log.Error("Exception trying to load an icon from local", ex);
-                                MessageBox.Show(
+                                System.Diagnostics.Debug.WriteLine(
                                     "Rawr encountered an error while attempting to load a saved image. If you encounter this error multiple times, please ensure that Rawr is unzipped in a location that you have full file read/write access, such as your Desktop, or My Documents.");
                                 //Log.Write(ex.Message);
                                 //Log.Write(ex.StackTrace);
@@ -246,7 +246,7 @@ namespace Rawr
 					//Log.Write(ex.StackTrace);
 					//log.Error("Exception trying to retrieve an icon from the armory", ex);
 				}
-				if (!string.IsNullOrEmpty(pathToIcon))
+				if (!string.IsNullOrEmpty(pathToIcon) && File.Exists(pathToIcon))   // Rebuffed 0.3.27: a missing file is no icon
 				{
 					int retry = 0;
 					do
@@ -266,7 +266,7 @@ namespace Rawr
 							if (retry >= 3)
 							{
 								//log.Error("Exception trying to load an icon from local", ex);
-								MessageBox.Show(
+								System.Diagnostics.Debug.WriteLine(
 									"Rawr encountered an error while attempting to load a saved image. If you encounter this error multiple times, please ensure that Rawr is unzipped in a location that you have full file read/write access, such as your Desktop, or My Documents.");
 								//Log.Write(ex.Message);
 								//Log.Write(ex.StackTrace);
@@ -319,7 +319,7 @@ namespace Rawr
 					//Log.Write(ex.StackTrace);
 					//log.Error("Exception trying to retrieve an icon from the armory", ex);
 				}
-				if (!string.IsNullOrEmpty(pathToIcon))
+				if (!string.IsNullOrEmpty(pathToIcon) && File.Exists(pathToIcon))   // Rebuffed 0.3.27: a missing file is no icon
 				{
 					int retry = 0;
 					do
@@ -339,7 +339,7 @@ namespace Rawr
 							if (retry >= 3)
 							{
 								//log.Error("Exception trying to load an icon from local", ex);
-								MessageBox.Show(
+								System.Diagnostics.Debug.WriteLine(
 									"Rawr encountered an error while attempting to load a saved image. If you encounter this error multiple times, please ensure that Rawr is unzipped in a location that you have full file read/write access, such as your Desktop, or My Documents.");
 								//Log.Write(ex.Message);
 								//Log.Write(ex.StackTrace);

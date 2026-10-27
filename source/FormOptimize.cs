@@ -288,11 +288,22 @@ namespace Rawr
             Text = string.Format("{0}% Complete - Rawr Optimizer", progressBarMain.Value);
 		}
 
+        string RebuffedOptimizerError(Exception error)
+        {
+            while (error is System.Reflection.TargetInvocationException && error.InnerException != null) error = error.InnerException;
+            string stack = error.StackTrace ?? "";
+            if (stack.Length > 1200) stack = stack.Substring(0, 1200) + " ...";
+            return "The optimizer stopped on an error and has no result:\n\n" + error.GetType().Name + ": " + error.Message + "\n\n" + stack;
+        }
+
         void _optimizer_OptimizeCharacterCompleted(object sender, OptimizeCharacterCompletedEventArgs e)
 		{
             buttonCancel.DialogResult = DialogResult.Cancel;
-            if (e.Cancelled)
+            // Rebuffed 0.3.27: an error reset nothing and read e.OptimizedCharacter, which rethrows it (the crash box);
+            // now it resets the form like a cancel and says what stopped the optimizer
+            if (e.Cancelled || e.Error != null)
             {
+                if (!e.Cancelled) MessageBox.Show(this, RebuffedOptimizerError(e.Error), "Rawr Optimizer Results");
                 labelMax.Text = string.Empty;
                 buttonOptimize.Text = "Optimize";
                 buttonCancel.Text = "Close";
@@ -323,7 +334,7 @@ namespace Rawr
                     MessageBox.Show(this, "Sorry, Rawr was unable to find a gearset to meet your requirements.", "Rawr Optimizer Results");
                 }
 
-                if (_character != null)
+                if (_character != null && bestCharacter != null)   // Rebuffed 0.3.27: no result, no result window (it threw on null)
                 {
                     FormOptimizeResult result = new FormOptimizeResult(_character, bestCharacter);
                     result.SetOptimizerScores(e.CurrentCharacterValue, e.OptimizedCharacterValue);
@@ -382,8 +393,9 @@ namespace Rawr
         void _optimizer_ComputeUpgradesCompleted(object sender, ComputeUpgradesCompletedEventArgs e)
         {
             buttonCancel.DialogResult = DialogResult.Cancel;
-            if (e.Cancelled)
+            if (e.Cancelled || e.Error != null)   // Rebuffed 0.3.27: as for the optimizer (e.Upgrades rethrows the error)
             {
+                if (!e.Cancelled) MessageBox.Show(this, RebuffedOptimizerError(e.Error), "Rawr Optimizer Results");
                 labelMax.Text = string.Empty;
 				buttonUpgrades.Text = "Build Upgrade List";
 				buttonCancel.Text = "Close";

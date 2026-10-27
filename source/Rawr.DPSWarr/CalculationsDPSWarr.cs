@@ -2109,7 +2109,7 @@ These numbers to do not include racial bonuses.",
                     
                     float flurryHitsPerSec = charStruct.combatFactors.TotalHaste * (1f + flurryHaste) / (1f + flurryHaste * oldFlurryUptime);
                     float temp = 1f / charStruct.Char.MainHand.Item.Speed;
-                    if (charStruct.Char.OffHand != null && charStruct.Char.OffHand.Item != null)
+                    if (charStruct.Char.OffHand != null && charStruct.Char.OffHand.Item != null && charStruct.Char.OffHand.Item.Speed > 0f)   // Rebuffed 0.3.27: a shield has speed 0
                     {
                         useOffHand = true;
                         temp += 1f / charStruct.Char.OffHand.Item.Speed;

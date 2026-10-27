@@ -124,8 +124,8 @@ namespace Rawr.Enhance
                 sb.AppendLine("cloak_enchant                   swordguard_embroidery");
             else
                 sb.AppendLine("cloak_enchant                   -");
-            if (character.Finger1.Id == 50401 || character.Finger2.Id == 50401 ||
-                character.Finger1.Id == 50402 || character.Finger2.Id == 50402)
+            if ((character.Finger1 == null ? 0 : character.Finger1.Id) == 50401 || (character.Finger2 == null ? 0 : character.Finger2.Id) == 50401 ||
+                (character.Finger1 == null ? 0 : character.Finger1.Id) == 50402 || (character.Finger2 == null ? 0 : character.Finger2.Id) == 50402)
                 sb.AppendLine("ring_proc                       ashen_verdict");
             else
                 sb.AppendLine("ring_proc                       -");
@@ -136,8 +136,8 @@ namespace Rawr.Enhance
             sb.AppendLine("glyph_minor3                    -");
             sb.AppendLine();
 
-            sb.AppendLine("necrotic_touch                  " + (character.MainHand.Id == 50035 ? "1" : "0"));
-            sb.AppendLine("necrotic_touch_heroic           " + (character.MainHand.Id == 50692 ? "1" : "0"));
+            sb.AppendLine("necrotic_touch                  " + ((character.MainHand == null ? 0 : character.MainHand.Id) == 50035 ? "1" : "0"));
+            sb.AppendLine("necrotic_touch_heroic           " + ((character.MainHand == null ? 0 : character.MainHand.Id) == 50692 ? "1" : "0"));
             sb.AppendLine("mixology                        " + 
                 (character.PrimaryProfession == Profession.Alchemy ||
                  character.SecondaryProfession == Profession.Alchemy ? "1" : "0"));

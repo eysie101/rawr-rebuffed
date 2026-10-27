@@ -44,10 +44,17 @@ namespace Rawr
 		void ItemButton_MouseLeave(object sender, EventArgs e)
 		{
 			ItemToolTip.Instance.Hide(this);
+			_rebuffedUnknownTip.Hide(this);   // Rebuffed 0.3.27
 		}
 
 		void ItemButton_MouseEnter(object sender, EventArgs e)
 		{
+			int unknown = UnknownItemId;   // Rebuffed 0.3.27
+			if (unknown > 0)
+			{
+				_rebuffedUnknownTip.Show("Unknown item " + unknown + ": not in Rawr's item data. This slot counts as empty.", this, this.Width, 0);
+				return;
+			}
             if (SelectedItemInstance != null)
             {
                 int tipX = this.Width;
@@ -177,8 +184,31 @@ namespace Rawr
             }
             else
             {
-                this.ItemIcon = _selectedItem != null ? ItemIcons.GetItemIcon(_selectedItem, this.Width < 64) : null;
+                this.ItemIcon = _selectedItem != null ? ItemIcons.GetItemIcon(_selectedItem, this.Width < 64) : (UnknownItemId > 0 ? RebuffedUnknownIcon(this.Width < 64) : null);   // Rebuffed 0.3.27
             }
+		}
+
+		// Rebuffed 0.3.27: the slot holds an id the item data lacks (it counts as empty in every model)
+		public int UnknownItemId { get { return Character == null || _selectedItem != null ? 0 : Character.RebuffedUnknownItemId(CharacterSlot); } }
+		private static readonly ToolTip _rebuffedUnknownTip = new ToolTip();
+		private static readonly Dictionary<int, Image> _rebuffedUnknownIcons = new Dictionary<int, Image>();
+		private static Image RebuffedUnknownIcon(bool small)
+		{
+			int size = small ? 32 : 64;
+			Image icon;
+			if (_rebuffedUnknownIcons.TryGetValue(size, out icon)) return icon;
+			Bitmap bmp = new Bitmap(size, size);
+			using (Graphics g = Graphics.FromImage(bmp))
+			using (Font font = new Font(FontFamily.GenericSansSerif, size * 0.55f, FontStyle.Bold, GraphicsUnit.Pixel))
+			using (StringFormat center = new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
+			{
+				g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+				g.Clear(Color.FromArgb(60, 60, 60));
+				g.DrawRectangle(new Pen(Color.FromArgb(160, 160, 160)), 0, 0, size - 1, size - 1);
+				g.DrawString("?", font, new SolidBrush(Color.FromArgb(255, 209, 0)), new RectangleF(0, 0, size, size), center);
+			}
+			_rebuffedUnknownIcons[size] = bmp;
+			return bmp;
 		}
 
 		public event EventHandler SelectedItemChanged;

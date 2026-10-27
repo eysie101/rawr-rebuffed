@@ -153,7 +153,7 @@ namespace Rawr.Optimizer
 
             for (int slot = 0; slot < Character.OptimizableSlotCount; slot++)
             {
-                ItemInstance item = character._item[slot];
+                ItemInstance item = character[(CharacterSlot)slot];   // Rebuffed 0.3.27: an unknown id reads as empty
                 if (item != null && item.Item != null && item.Item.AvailabilityInformation != null)
                 {
                     slotDefault[slot] = (item == item.Item.AvailabilityInformation.DefaultItemInstance);
@@ -214,7 +214,7 @@ namespace Rawr.Optimizer
                 {
                     if (hasSocketBonus[slot])
                     {
-                        ItemInstance item = character._item[slot];
+                        ItemInstance item = character[(CharacterSlot)slot];   // Rebuffed 0.3.27: an unknown id reads as empty
                         for (int i = 0; i < matchedSocketBonuses.Count; i++)
                         {
                             if (matchedSocketBonuses[i] == item.Item.SocketBonus)
@@ -253,7 +253,7 @@ namespace Rawr.Optimizer
                         {
                             if (!slotFilled[slot])
                             {
-                                ItemInstance item = character._item[slot];
+                                ItemInstance item = character[(CharacterSlot)slot];   // Rebuffed 0.3.27: an unknown id reads as empty
                                 ItemInstance defaultItem = item.Item.AvailabilityInformation.DefaultItemInstance;
                                 if (item.Item.SocketBonus == socketBonus)
                                 {
@@ -372,7 +372,7 @@ namespace Rawr.Optimizer
             {
                 if (!slotFilled[slot])
                 {
-                    ItemInstance item = character._item[slot];
+                    ItemInstance item = character[(CharacterSlot)slot];   // Rebuffed 0.3.27: an unknown id reads as empty
                     ItemInstance defaultItem = item.Item.AvailabilityInformation.DefaultItemInstance;
                     bool found = false;
                     int differentGems = 4;
@@ -534,7 +534,7 @@ namespace Rawr.Optimizer
                     if (selected[k])
                     {
                         bonusCountActual[socketBonusIndex[matchingIndex[k]]]++;
-                        ItemInstance item = character._item[matchingIndex[k]];
+                        ItemInstance item = character[(CharacterSlot)matchingIndex[k]];
                         for (int gem = 1; gem <= 3; gem++)
                         {
                             switch (item.Item.GetSocketColor(gem))
@@ -932,7 +932,7 @@ namespace Rawr.Optimizer
 			// if item is not available pick the one that is available
 			for (int slot = 0; slot < Character.OptimizableSlotCount; slot++)
 			{
-				ItemInstance item = character._item[slot];
+				ItemInstance item = character[(CharacterSlot)slot];   // Rebuffed 0.3.27: an unknown id reads as empty
 				if (item != null && item.Item != null)
 				{
 					if (item.Item.AvailabilityInformation != null)
@@ -1110,7 +1110,7 @@ namespace Rawr.Optimizer
 			{
                 if (slot != (int)CharacterSlot.OffHand || character.CurrentCalculations.IncludeOffHandInCalculations(character))
                 {
-                    AddItemRestriction(character._item[slot]);
+                    AddItemRestriction(character[(CharacterSlot)slot]);
                 }
 			}
 		}
@@ -1248,7 +1248,7 @@ namespace Rawr.Optimizer
 			// if item is not available pick the one that is available
 			for (int slot = 0; slot < Character.OptimizableSlotCount; slot++)
 			{
-				ItemInstance item = character._item[slot];
+				ItemInstance item = character[(CharacterSlot)slot];   // Rebuffed 0.3.27: an unknown id reads as empty
 				if (item != null && item.Item != null && item.Item.AvailabilityInformation != null)
 				{
 					if (!itemAvailable.ContainsKey(item.GemmedId))
@@ -1654,7 +1654,7 @@ namespace Rawr.Optimizer
             {
                 for (int i = 0; i < slotCount; i++)
                 {
-                    ItemInstance itemInstance = character._item[i];
+                    ItemInstance itemInstance = character[(CharacterSlot)i];
                     if (itemInstance != null && itemInstance.Item != null && itemInstance.Item.AvailabilityInformation != null && itemInstance.Item.AvailabilityInformation.DefaultItemInstance == null)
                     {
                         itemInstance.Item.AvailabilityInformation.DefaultItemInstance = itemInstance;

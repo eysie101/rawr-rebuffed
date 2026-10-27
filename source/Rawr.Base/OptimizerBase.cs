@@ -265,7 +265,42 @@ namespace Rawr.Optimizer
         private int threadPoolComplete;
         private int threadPoolSize;
 
+        // Rebuffed 0.3.27: an exception on a thread-pool worker ended Rawr without a word (stage run 2026-10-27,
+        // OptimizerBase.GetThreadPoolValuation). The first one is kept, the other workers take no more work, and the
+        // waiting thread rethrows it as itself (type and stack kept), so the optimizer's own error path reports it.
+        protected Exception rebuffedWorkerError;
+
+        protected void RebuffedRethrowWorkerError()
+        {
+            Exception e = Interlocked.Exchange(ref rebuffedWorkerError, null);
+            if (e != null) System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(e).Throw();
+        }
+
+        private void RebuffedPoolWorkerFailed(Exception ex)
+        {
+            Interlocked.CompareExchange(ref rebuffedWorkerError, ex, null);
+            Interlocked.Exchange(ref threadPoolStarted, int.MaxValue / 2);   // every worker finds the queue empty and leaves
+            if (Interlocked.Decrement(ref startedThreads) == 0) valuationsComplete.Set();
+        }
+
+        protected void RebuffedDirectWorkerFailed(Exception ex)
+        {
+            lock (directValuationLock)
+            {
+                if (rebuffedWorkerError == null) rebuffedWorkerError = ex;
+                directValuationsIndex = int.MaxValue / 2;   // no worker takes another item
+                startedThreads--;
+                Monitor.Pulse(directValuationLock);
+            }
+        }
+
         private void GetThreadPoolValuation(object state)
+        {
+            try { RebuffedThreadPoolValuation(state); }
+            catch (Exception ex) { RebuffedPoolWorkerFailed(ex); }
+        }
+
+        private void RebuffedThreadPoolValuation(object state)
         {
             int i = Interlocked.Increment(ref threadPoolStarted) - 1;
             if (i >= threadPoolSize)
@@ -324,6 +359,12 @@ namespace Rawr.Optimizer
         }
 
         private void ThreadPoolGeneratePopulation(object state)
+        {
+            try { RebuffedGeneratePopulation(state); }
+            catch (Exception ex) { RebuffedPoolWorkerFailed(ex); }   // Rebuffed 0.3.27, see rebuffedWorkerError
+        }
+
+        private void RebuffedGeneratePopulation(object state)
         {
             Random rand = Rnd;
             int i = Interlocked.Increment(ref threadPoolStarted) - 1;
@@ -513,6 +554,7 @@ namespace Rawr.Optimizer
                         GetThreadPoolValuation(null);
 
                         valuationsComplete.WaitOne();
+                        RebuffedRethrowWorkerError();   // Rebuffed 0.3.27
                     }
                     else
                     {
@@ -595,6 +637,7 @@ namespace Rawr.Optimizer
                         ThreadPoolGeneratePopulation(null);
 
                         valuationsComplete.WaitOne();
+                        RebuffedRethrowWorkerError();   // Rebuffed 0.3.27
                     }
                     else
                     {
@@ -753,6 +796,12 @@ namespace Rawr.Optimizer
 
         protected virtual void ThreadPoolDirectUpgradeValuation(object ignore)
         {
+            try { RebuffedDirectUpgradeValuation(ignore); }
+            catch (Exception ex) { RebuffedDirectWorkerFailed(ex); }   // Rebuffed 0.3.27, see rebuffedWorkerError
+        }
+
+        private void RebuffedDirectUpgradeValuation(object ignore)
+        {
             TIndividual swappedIndividual = null;
             float value = 0;
             TValuation valuation = default(TValuation);
@@ -825,6 +874,7 @@ namespace Rawr.Optimizer
                     {
                         // everything is queued up already
                         startedThreads--;
+                        if (startedThreads == 0) Monitor.Pulse(directValuationLock);   // Rebuffed 0.3.27: after a worker error this can be the last worker out
                         return;
                     }
                 }
@@ -856,7 +906,8 @@ namespace Rawr.Optimizer
 
                 lock (directValuationLock)
                 {
-                    while (directValuationsComplete < directValuationsList.Count || startedThreads > 0) Monitor.Wait(directValuationLock);
+                    while ((directValuationsComplete < directValuationsList.Count && rebuffedWorkerError == null) || startedThreads > 0) Monitor.Wait(directValuationLock);
+                    RebuffedRethrowWorkerError();   // Rebuffed 0.3.27
                     if (directValuationFoundUpgrade)
                     {
                         best = bestDirectValue;

@@ -1385,6 +1385,7 @@ namespace Rawr
 
 		public ItemInstance Clone()
 		{
+			if ((object)Item == null && Id > 0) return new ItemInstance(Id, Gem1Id, Gem2Id, Gem3Id, EnchantId);   // Rebuffed 0.3.27: keep an unknown id
 			return new ItemInstance()
 			{
 				Item = this.Item,

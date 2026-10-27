@@ -250,7 +250,7 @@ namespace Rawr.Optimizer
             if (includeFood || includeElixir || includeTalents)
             {
                 Items = new object[characterSlots + 4];
-                Array.Copy(character._item, Items, characterSlots);
+                Array.Copy(character.GetItems(), Items, characterSlots);   // Rebuffed 0.3.27: an unknown id reads as empty
                 if (includeFood || includeElixir)
                 {
                     foreach (Buff buff in character.ActiveBuffs)
@@ -282,7 +282,7 @@ namespace Rawr.Optimizer
             }
             else
             {
-                Items = character._item;
+                Items = character.GetItems();   // Rebuffed 0.3.27: was the raw array, with unknown ids
             }
         }
     }
@@ -990,11 +990,11 @@ namespace Rawr.Optimizer
                             lockedSlot = slot;
                             List<object> savedItems = slotItems[(int)lockedSlot];
                             slotItems[(int)lockedSlot] = lockedItems;
-                            if (lockedSlot == CharacterSlot.Finger1 && Item.ItemsAreConsideredUniqueEqual(_character.Finger2.Item, item))
+                            if (lockedSlot == CharacterSlot.Finger1 && Item.ItemsAreConsideredUniqueEqual(_character.Finger2 == null ? null : _character.Finger2.Item, item))
                             {
                                 lockedSlot = CharacterSlot.Finger2;
                             }
-                            if (lockedSlot == CharacterSlot.Trinket1 && Item.ItemsAreConsideredUniqueEqual(_character.Trinket2.Item, item))
+                            if (lockedSlot == CharacterSlot.Trinket1 && Item.ItemsAreConsideredUniqueEqual(_character.Trinket2 == null ? null : _character.Trinket2.Item, item))
                             {
                                 lockedSlot = CharacterSlot.Trinket2;
                             }
@@ -1004,7 +1004,7 @@ namespace Rawr.Optimizer
                                 // can't dual wield unique items, so make the other slot empty
                                 __character = BuildSingleItemSwapIndividual(__character, (int)CharacterSlot.OffHand, null);
                             }
-                            if (lockedSlot == CharacterSlot.OffHand && Item.ItemsAreConsideredUniqueEqual(_character.MainHand.Item, item))
+                            if (lockedSlot == CharacterSlot.OffHand && _character.MainHand != null && Item.ItemsAreConsideredUniqueEqual(_character.MainHand.Item, item))
                             {
                                 // can't dual wield unique items, so make the other slot empty
                                 __character = BuildSingleItemSwapIndividual(__character, (int)CharacterSlot.MainHand, null);
@@ -2016,6 +2016,12 @@ namespace Rawr.Optimizer
 
         private void ThreadPoolDirectUpgradeValuationSingleChanges(object ignore)
         {
+            try { RebuffedSingleChangesValuation(ignore); }
+            catch (Exception ex) { RebuffedDirectWorkerFailed(ex); }   // Rebuffed 0.3.27, see OptimizerBase.rebuffedWorkerError
+        }
+
+        private void RebuffedSingleChangesValuation(object ignore)
+        {
             OptimizerCharacter swappedIndividual = null;
             DirectUpgradeEntry directUpgradeEntry = null;
             float value = 0;
@@ -2094,6 +2100,7 @@ namespace Rawr.Optimizer
                     {
                         // everything is queued up already
                         startedThreads--;
+                        if (startedThreads == 0) Monitor.Pulse(directValuationLock);   // Rebuffed 0.3.27: after a worker error this can be the last worker out
                         return;
                     }
                 }
@@ -2135,7 +2142,8 @@ namespace Rawr.Optimizer
 
                         lock (directValuationLock)
                         {
-                            while (directValuationsComplete < directValuationsListSingleChanges.Count || startedThreads > 0) Monitor.Wait(directValuationLock);
+                            while ((directValuationsComplete < directValuationsListSingleChanges.Count && rebuffedWorkerError == null) || startedThreads > 0) Monitor.Wait(directValuationLock);
+                            RebuffedRethrowWorkerError();   // Rebuffed 0.3.27
                             if (directValuationFoundUpgrade)
                             {
                                 if (bestDirectValue > best)

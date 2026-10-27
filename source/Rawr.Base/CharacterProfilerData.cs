@@ -622,8 +622,7 @@ namespace Rawr
 		{
 			Character c = m_character;
 			if (c == null) return;
-			if (m_iLevel >= 10)
-			{
+			{   // Rebuffed 0.3.27: every level (was >= 10 only, which left a level 1 mage in the loaded Enhance model)
 				try { string model = RebuffedModelFromTalents(c); if (model != null && Calculations.Models.ContainsKey(model)) c.CurrentModel = model; }
 				catch (Exception) { }
 			}

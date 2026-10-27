@@ -483,7 +483,7 @@ namespace Rawr
                     : Path.Combine(TalentImageCachePath, charClass.ToString().ToLower() + Path.DirectorySeparatorChar + tt0 + Path.DirectorySeparatorChar + tn0 + ".jpg");
                 if (File.Exists(local0)) return local0;
             }
-            if (_talentIconsOffline) return null;   // Rebuffed
+            return null;   // Rebuffed 0.3.27: talent icons only from the pack (the 2010 host sends files that are no image)
             string uri = "null";
             //string codepath = "null";
             //try {

@@ -85,6 +85,7 @@ namespace Rawr.Base
                     CharacterCalculationsBase currentCalc = Calculations.GetCharacterCalculations(character, new Item() { Stats = newStats }, false, false, false);
                     float currentFigure = GetCalculationValue(currentCalc, calculation);
                     float dpsChange = currentFigure - baseFigure;
+                    if (float.IsNaN(dpsChange) || float.IsInfinity(dpsChange)) dpsChange = 0f;   // Rebuffed 0.3.27: (int)NaN overflowed DrawLines
                     points[index][count + scale] = new PointF(graphOffset + count * graphStep, dpsChange);
                     if (dpsChange < minDpsChange)
                         minDpsChange = dpsChange;
@@ -149,6 +150,7 @@ namespace Rawr.Base
                 {
                     ComparisonCalculationBase currentCalc = CalculationsBase.GetRelativeStatValue(character, properties[index].Key, item, properties[index].Value);
                     float dpsChange = GetCalculationValue(currentCalc, calculation);
+                    if (float.IsNaN(dpsChange) || float.IsInfinity(dpsChange)) dpsChange = 0f;   // Rebuffed 0.3.27: (int)NaN overflowed DrawLines
                     points[index][count + scale] = new PointF(graphOffset + count * graphStep, dpsChange);
                     if (dpsChange < minDpsChange)
                         minDpsChange = dpsChange;
